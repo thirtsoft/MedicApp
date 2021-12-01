@@ -1,0 +1,895 @@
+<!-- Home Banner -->
+<div class="home">
+  <section class="section section-search">
+    <div class="container-fluid">
+      <div class="banner-wrapper">
+        <!--  <div class="banner-header text-center">
+                    <h1>Search Doctor, Make an Appointment</h1>
+                    <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
+                </div> -->
+
+        <div class="banner-header text-center">
+          <h1>
+            Cherchez vous à faire une analyse de votre (Thèse, Mémoire, Article)
+            ?
+          </h1>
+          <p>Alors vous etes au bon endroid.</p>
+        </div>
+
+        <!-- Search -->
+        <!-- <div class="search-box">
+                    <form>
+                        <div class="form-group search-location">
+                        <input type="text" class="form-control" placeholder="Search Location">
+                            <span class="form-text">Based on your Location</span>
+                        </div>
+                        <div class="form-group search-info">
+
+                            <ng-autocomplete [data]="countries" type="text" class="form-control"
+                                [searchKeyword]="keyword" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc" (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
+                                historyIdentifier="countries" [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+							            <span class="form-text">Ex : Dental or Sugar Check up etc</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary search-btn mt-0"
+                            [routerLink]="'/patients/search-doctor'"><i class="fas fa-search"></i>
+                            <span>Search</span></button>
+                    </form>
+                </div> -->
+        <!-- /Search -->
+      </div>
+    </div>
+  </section>
+  <!-- /Home Banner -->
+  <section class="section home-tile-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 m-auto">
+          <div class="section-header text-center">
+            <h2>Faites votre demande d'analyse ?</h2>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 mb-3">
+              <div class="card text-center doctor-book-card">
+                <img
+                  src="assets/img/doctors/doctor-07.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+                <!--  <div class="doctor-book-card-content tile-card-content-1">
+                                    <div>
+                                        <h3 class="card-title mb-0">Visit a Doctor</h3>
+                                        <a [routerLink]="'/patients/search-doctor'" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Book Now</a>
+                                    </div>
+                                </div> -->
+                <div class="doctor-book-card-content tile-card-content-1">
+                  <div>
+                    <h3 class="card-title mb-0">SEN-ANALYSE</h3>
+
+                   <a
+                      (click)="openModal(template)"
+                      class="btn btn-lg book-btn1 px-3 py-2 mt-3"
+                      tabindex="0"
+                      style="font-size: 17px"
+                      >Envoyer Votre demande</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-3">
+              <div class="card text-center doctor-book-card">
+                <img
+                  src="assets/img/img-pharmacy1.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+                <div class="doctor-book-card-content tile-card-content-1">
+                  <div>
+                    <h3 class="card-title mb-0">Consulter nos Services</h3>
+                    <a
+                      [routerLink]="'/services'"
+                      class="btn book-btn1 px-3 py-2 mt-3"
+                      tabindex="0"
+                      >Voir maintenant</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  <div class="col-lg-4 mb-3">
+                          <div class="card text-center doctor-book-card">
+                              <img src="assets/img/img-pharmacy1.jpg" alt="" class="img-fluid">
+                              <div class="doctor-book-card-content tile-card-content-1">
+                                  <div>
+                                      <h3 class="card-title mb-0">Find a Pharmacy</h3>
+                                      <a [routerLink]="'/pharmacy/pharmacy-search'" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Find Now</a>
+                                  </div>
+                              </div>
+                          </div>
+                        </div> -->
+            <!--  <div class="col-lg-4 mb-3">
+                            <div class="card text-center doctor-book-card">
+                                <img src="assets/img/lab-image.jpg" alt="" class="img-fluid">
+                                <div class="doctor-book-card-content tile-card-content-1">
+                                    <div>
+                                    <h3 class="card-title mb-0">Find a Lab</h3>
+                                        <a href="javascript:void(0);" class="btn book-btn1 px-3 py-2 mt-3" tabindex="0">Coming Soon</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Clinic and Specialities -->
+  <!--  <section class="section section-specialities">
+    <div class="container-fluid">
+      <div class="section-header text-center">
+        <h2>Clinic and Specialities</h2>
+        <p class="sub-title">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-9">
+
+
+          <div class="specialities-slider slider">
+            <ngx-slick-carousel
+              class="carousel"
+              #slickModal="slick-carousel"
+              [config]="slideConfig3"
+            >
+              <div
+                ngxSlickItem
+                *ngFor="let slide of slides"
+                class="speicality-item text-center"
+              >
+                <div class="">
+                  <div class="speicality-img">
+                    <img
+                      src="{{ slide.img }}"
+                      class="img-fluid"
+                      alt="Speciality"
+                    />
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>
+                  <p>{{ slide.name }}</p>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+            <div class="text-center client-navbtn">
+              <button class="btn-next" (click)="next()">
+                <i class="las la-caret-square-left"></i>
+              </button>
+              <button class="btn-prev" (click)="prev()">
+                <i class="las la-caret-square-right"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- Clinic and Specialities -->
+
+  <section class="section section-category">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Nos statistiques</h2>
+        <p class="sub-title">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="row">
+        <!--  <div class="row" *ngFor="let dept of listDataDeparment;let i=index"> -->
+        <div class="col-lg-3">
+          <div class="category-box">
+            <div class="category-image">
+              <img src="assets/img/category/1.png" alt="" />
+            </div>
+            <div class="category-content">
+              <h4>Analyse de thèse</h4>
+              <span>+100 analyses</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="category-box">
+            <div class="category-image">
+              <img src="assets/img/category/3.png" alt="" />
+            </div>
+            <div class="category-content">
+              <h4>Analyse de mémoire</h4>
+              <span>+25 analyses</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="category-box">
+            <div class="category-image">
+              <img src="assets/img/category/4.png" alt="" />
+            </div>
+            <div class="category-content">
+              <h4>Analyse d'Articles</h4>
+              <span>+12 analayses</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="category-box">
+            <div class="category-image">
+              <img src="assets/img/category/2.png" alt="" />
+            </div>
+            <div class="category-content">
+              <h4>Rendez-vous</h4>
+              <span>+20 accompagnements</span>
+            </div>
+          </div>
+        </div>
+        <!--  <div class="col-lg-3">
+                <div class="category-box">
+                    <div class="category-image">
+                        <img src="assets/img/category/5.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Dentist</h4>
+                        <span>07 Doctors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="category-box">
+                    <div class="category-image">
+                        <img src="assets/img/category/1.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Urology</h4>
+                        <span>16 Doctors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="category-box">
+                    <div class="category-image">
+                        <img src="assets/img/category/4.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Cardiologist</h4>
+                        <span>18 Doctors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="category-box">
+                    <div class="category-image">
+                        <img src="assets/img/category/3.png" alt="">
+                    </div>
+                    <div class="category-content">
+                        <h4>Neurology</h4>
+                        <span>22 Doctors</span>
+                    </div>
+                </div>
+            </div>  -->
+      </div>
+    </div>
+  </section>
+
+  <!-- popular section-->
+  <!-- <section class="section section-doctor">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="section-header">
+            <h2>Book Our Doctor</h2>
+            <p>Lorem Ipsum is simply dummy text</p>
+          </div>
+          <div class="about-content">
+            <p>
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum.
+            </p>
+            <p>
+              web page editors now use Lorem Ipsum as their default model text,
+              and a search for 'lorem ipsum' will uncover many web sites still
+              in their infancy. Various versions have evolved over the years,
+              sometimes
+            </p>
+            <a href="javascript:;">Read More..</a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="doctor-slider">
+            <ngx-slick-carousel
+              class="carousel"
+              #slickModal="slick-carousel"
+              [config]="slideConfigure"
+            >
+              <div
+                class="slick-slide"
+                *ngFor="let doctor of doctors; let i = index"
+              >
+                <div ngxSlickItem>
+                  <div
+                    class="profile-widget"
+                    style="width: 100%; display: inline-block"
+                  >
+                    <div class="doc-img">
+                      <a
+                        [routerLink]="'/patients/doctor-profile'"
+                        [queryParams]="{ id: doctor.id }"
+                        tabindex="-1"
+                      >
+                        <img
+                          class="img-fluid"
+                          alt="User Image"
+                          [src]="doctor.profile"
+                        />
+                      </a>
+                      <a
+                        href="javascript:void(0)"
+                        class="fav-btn"
+                        tabindex="-1"
+                      >
+                        <i class="far fa-bookmark"></i>
+                      </a>
+                    </div>
+                    <div class="pro-content">
+                      <h3 class="title">
+                        <a
+                          [routerLink]="'/patients/doctor-profile'"
+                          [queryParams]="{ id: doctor.id }"
+                          tabindex="-1"
+                          >{{ doctor.doctor_name }}</a
+                        >
+                        <i class="fas fa-check-circle verified"></i>
+                      </h3>
+                      <p class="speciality">{{ doctor.Education }}</p>
+                      <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="d-inline-block average-rating"
+                          >({{ doctor.span }})</span
+                        >
+                      </div>
+                      <ul class="available-info">
+                        <li>
+                          <i class="fas fa-map-marker-alt"></i>
+                          {{ doctor.location }}
+                        </li>
+                        <li>
+                          <i class="far fa-clock"></i> {{ doctor.Available }}
+                        </li>
+                        <li>
+                          <i class="far fa-money-bill-alt"></i>
+                          {{ doctor.Price }}
+                          <a
+                            href="javascript:void(0)"
+                            tooltip="Lorem Ipsum"
+                            placement="top"
+                            ><i class="fas fa-info-circle"></i
+                          ></a>
+                        </li>
+                      </ul>
+                      <div class="row row-sm">
+                        <div class="col-6">
+                          <a
+                            [routerLink]="'/patients/doctor-profile'"
+                            [queryParams]="{ id: doctor.id }"
+                            class="btn view-btn"
+                            tabindex="-1"
+                            >View Profile</a
+                          >
+                        </div>
+                        <div class="col-6">
+                          <a
+                            [routerLink]="'/patients/booking'"
+                            [queryParams]="{ id: doctor.id }"
+                            class="btn book-btn"
+                            tabindex="-1"
+                            >Book Now</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!--popular section-->
+
+  <!--   <section class="section section-features">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5 features-img">
+          <img
+            src="assets/img/features/feature.png"
+            class="img-fluid"
+            alt="Feature"
+          />
+        </div>
+        <div class="col-md-7">
+          <div class="section-header">
+            <h2 class="mt-2">Available Features in Our Clinic</h2>
+            <p>
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout.
+            </p>
+          </div>
+          <div class="features-slider slider">
+            <ngx-slick-carousel
+              class="carousel"
+              #slickModal="slick-carousel"
+              [config]="slideConfig2"
+            >
+              <div ngxSlickItem *ngFor="let slide of sliderContent">
+                <div class="feature-item text-center">
+                  <img src="{{ slide.img }}" class="img-fluid" alt="Feature" />
+                  <p>{{ slide.name }}</p>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!--  <section class="section section-blogs">
+    <div class="container-fluid">
+
+      <div class="section-header text-center">
+        <h2>Blogs and News</h2>
+        <p class="sub-title">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+
+      <div class="row blog-grid-row">
+        <div
+          class="col-md-6 col-lg-3 col-sm-12"
+          *ngFor="let blog of blogs; let i = index"
+          [hidden]="i > 3"
+        >
+
+          <div class="blog grid-blog">
+            <div class="blog-image">
+              <a [routerLink]="'/blog-details'" [queryParams]="{ id: blog.id }"
+                ><img class="img-fluid" [src]="blog.img" alt="Post Image"
+              /></a>
+            </div>
+            <div class="blog-content">
+              <ul class="entry-meta meta-item">
+                <li>
+                  <div class="post-author">
+                    <a [routerLink]="'/patients/doctor-profile'"
+                      ><img [src]="blog.doctor_pic" alt="Post Author" />
+                      <span>{{ blog.doctor_name }}</span></a
+                    >
+                  </div>
+                </li>
+                <li>
+                  <i class="far fa-clock"></i>
+                  {{ blog.createdAt | date: "dd MMM yyyy" }}
+                </li>
+              </ul>
+              <h3 class="blog-title">
+                <a
+                  [routerLink]="'/blog-details'"
+                  [queryParams]="{ id: blog.id }"
+                  >{{ blog.title }}</a
+                >
+              </h3>
+              <p class="mb-0 desc-ellipsis">{{ blog.description }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="view-all text-center">
+        <a [routerLink]="'/blog'" class="btn btn-primary">View All</a>
+      </div>
+    </div>
+  </section> -->
+</div>
+
+<!-- <ng-template #template>
+  <div class="modal-header">
+
+
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    (lastName.touched || addDemandeForm.submitted) &&
+                    lastName.errors?.required
+                  "
+                >
+                  le nom est obligatoire
+                </span>
+
+
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    (mobile.touched || addDemandeForm.submitted) &&
+                    mobile.errors?.required
+                  "
+                >
+                  le numéro télépone est obligatoire
+                </span>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value=""
+                  [(ngModel)]="formDataDemandeDTO.email"
+                  name="email"
+                  id="email"
+                  #email="ngModel"
+                  required
+                  placeholder="votre email"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    (email.touched || addDemandeForm.submitted) &&
+                    email.errors?.required
+                  "
+                >
+                  l'email est obligatoire
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6 col-md-6">
+              <div class="form-group">
+                <label>Directeur thèse</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value=""
+                  [(ngModel)]="formDataDemandeDTO.directorThese"
+                  name="directorThese"
+                  id="directorThese"
+                  #directorThese="ngModel"
+                  required
+                  placeholder="votre directeur de These"
+                />
+              </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+              <div class="form-group">
+                <label>Encadrant</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value=""
+                  [(ngModel)]="formDataDemandeDTO.typeEtude"
+                  name="encadrant"
+                  id="encadrant"
+                  #encadrant="ngModel"
+                  required
+                  placeholder="votre encadrant"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-12">
+            <div class="form-group">
+              <label>Sujet de Thèse</label>
+              <input
+                type="text"
+                class="form-control"
+                value=""
+                [(ngModel)]="formDataDemandeDTO.subjectThese"
+                name="sujetThese"
+                id="sujetThese"
+                #sujetThese="ngModel"
+                required
+                placeholder="votre sujet de These"
+              />
+            </div>
+          </div> -->
+
+          <!--  <div class="col-6 col-md-6">
+                          <div class="form-group">
+                              <label>Department</label>
+                              <select class="form-control">
+                                  <option>Surgen</option>
+                                  <option>Cardiologist</option>
+                                  <option>Gynacologist</option>
+                              </select>
+                          </div>
+                        </div>
+
+                      </div>-->
+<!--
+          <div class="col-12 col-md-12">
+            <div class="form-group">
+              <label
+                >Choisir votre Fichier de données (.xls, .txt, .csv)
+              </label>
+              <input
+                type="file"
+                class="form-control"
+                value=""
+                name="baseDeDonnee"
+                id="baseDeDonnee"
+                required
+                class="form-control"
+                (change)="selectFileDemande($event)"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" (click)="save()">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</ng-template> -->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Ajouter Demande</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="formDataDemandeDTO">
+    <form>
+      <div class="row form-row">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              [(ngModel)]="formDataDemandeDTO.firstName"
+              #firstName="ngModel"
+              placeholder="Prénom"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Nom</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              [(ngModel)]="formDataDemandeDTO.lastName"
+              #lastName="ngModel"
+              placeholder="Nom"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input
+              type="text"
+              class="form-control"
+              name="mobile"
+              [(ngModel)]="formDataDemandeDTO.mobile"
+              #mobile="ngModel"
+              placeholder="00 000 00 00"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              [(ngModel)]="formDataDemandeDTO.email"
+              #email="ngModel"
+              placeholder="example: demande@gmail.com"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Spécialité</label>
+            <input
+              type="text"
+              class="form-control"
+              name="speciality"
+              [(ngModel)]="formDataDemandeDTO.speciality"
+              #speciality="ngModel"
+              placeholder="spécialité: médecine générale"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Type d'Etude</label>
+            <select class="form-control"
+              type="text"
+              class="form-control"
+              name="typeEtude"
+              [(ngModel)]="formDataDemandeDTO.typeEtude"
+              #typeEtude="ngModel"
+            >
+              <option value="Memoire">Memoire</option>
+              <option value="These">These</option>
+              <option value="Article">Article</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Directeur Thèse</label>
+            <input
+              type="text"
+              class="form-control"
+              name="directorThese"
+              [(ngModel)]="formDataDemandeDTO.directorThese"
+              #directorThese="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Masque de saisie</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              name="masqueSaisi"
+              [(ngModel)]="formDataDemandeDTO.masqueSaisi"
+              #masqueSaisi="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="form-group">
+            <label>Saisie de données</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              name="saisiDonnees"
+              [(ngModel)]="formDataDemandeDTO.saisiDonnees"
+              #saisiDonnees="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Analyse Unvariée</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              name="analyseUnvaried"
+              [(ngModel)]="formDataDemandeDTO.analyseUnvaried"
+              #analyseUnvaried="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Analyse Bivariée</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              name="analyseBivarie"
+              [(ngModel)]="formDataDemandeDTO.analyseBivarie"
+              #analyseBivarie="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="form-group">
+            <label>Analyse Multivariée</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              name="analyseMultivariate"
+              [(ngModel)]="formDataDemandeDTO.analyseMultivariate"
+              #analyseMultivariate="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Télécharger votre fichier de données (Nb: Eliminer les prénoms et noms de votre fichier
+              (et tous autre données personnelles)</label>
+            <input
+              type="file"
+              class="form-control"
+              value=""
+              name="baseDeDonnee"
+              id="baseDeDonnee"
+              required
+              class="form-control"
+              (change)="selectFileDemande($event)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Suject de Thèse</label>
+            <textarea
+              id="subjectThese" cols="2" rows="2"
+              type="text"
+              class="form-control"
+              name="subjectThese"
+              [(ngModel)]="formDataDemandeDTO.subjectThese"
+              #subjectThese="ngModel"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <button type="submit" class="btn btn-primary btn-block" (click)="save()">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</ng-template>

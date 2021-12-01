@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h1>Modifier Montant</h1>
+    <form [formGroup]="this.crudApi.formData" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>ID Demande </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="id"
+          id="id"
+          required
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Montant</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="price"
+          id="price"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Nbre de jours</label>
+        <input
+          type="number"
+          name="nbreJours"
+          class="form-control"
+          formControlName="nbreJours"
+          id="nbreJours"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-sm">
+          <em class="fa fa-database"></em> Enregistrer</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-danger btn-sm ml-1"
+          [mat-dialog-close]
+        >
+          <em class="fa fa-close"></em> Fermer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,336 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-5 col-auto">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/admin/'">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Liste des Demandes Validées</li>
+          </ul>
+        </div>
+
+        <div class="col-sm-4 col-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search"
+            [(ngModel)]="searchText"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="row-border hover table table-bordered table-center mb-0" aria-label="">
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Fichier</th>
+                    <th>Status</th>
+                    <th>Montant</th>
+                    <th>Date</th>
+                    <th>N.Jours</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let demandeDTO of crudApi.listData
+                        | filter: searchText
+                        | paginate: { itemsPerPage: 8, currentPage: p };
+                      let i = index;
+                    "
+                  >
+                    <td>{{ demandeDTO.firstName }} {{ demandeDTO.lastName }}</td>
+                    <td>{{ demandeDTO.mobile }}</td>
+                    <td>{{ demandeDTO.email }}</td>
+                    <td>
+                      {{ demandeDTO.baseDeDonnee }} &nbsp;
+                      <a
+                        href="http://localhost:8081/website/v1/demandes/downloadDemandeFile/{{
+                          demandeDTO.baseDeDonnee
+                        }}"
+                        class="cv"
+                        >&nbsp;&nbsp;
+                        <em
+                          class="fa fa-download"
+                          style="cursor: pointer; align-items: flex-end"
+                        ></em
+                        >&nbsp;&nbsp;
+                      </a>
+                    </td>
+                    <td>{{ demandeDTO.status }}</td>
+                    <td>{{ demandeDTO.price }}
+
+                        <a
+                            class="btn btn-sm bg-success-light"
+                            data-toggle="modal"
+                            (click)="editModal(edittemplate, demandeDTO)"
+                            style="cursor: pointer;"
+                          >
+                          <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </td>
+
+                    <td>{{ demandeDTO.createdDate | date: "dd-MM-yyyy" }}</td>
+                    <td>{{ demandeDTO.nbreJours }}</td>
+
+                    <td class="text-right">
+                      <div class="actions">
+
+                        <a
+                            class="btn btn-sm bg-success-light"
+                            (click)="viewDemandeDTO()"
+                            style="cursor: pointer;"
+                          >
+                          <i class="fa fa-eye"></i>
+                        </a>
+
+
+                       <!--  <a
+                          data-toggle="modal"
+                          (click)="deleteModal(delete, demandeDTO)"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="fe fe-trash"></i>
+                        </a> -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="pagination">
+                <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Ajouter Service</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+ <!--  <div class="modal-body">
+    <form>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Code</label>
+            <input
+              type="text"
+              class="form-control"
+              name="code"
+              [(ngModel)]="formDataServiceDTO.code"
+              #code="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="form-group">
+            <label>Nom Service</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              [(ngModel)]="formDataServiceDTO.name"
+              #name="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              [(ngModel)]="formDataServiceDTO.description"
+              #description="ngModel"
+              id="description"
+              cols="7"
+              rows="7"
+            ></textarea>
+          </div>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" (click)="save()">
+        Save Changes
+      </button>
+    </form>
+  </div> -->
+</ng-template>
+
+<ng-template #edittemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modifier le Prix</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="form-group">
+            <label>Prix</label>
+            <input type="number" class="form-control" formControlName="price"
+              id="price"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12">
+        <div class="form-group">
+          <label>Nbre Jours</label>
+          <input type="number" class="form-control" formControlName="nbreJours"
+            id="nbreJours"
+            />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="update()"
+      >
+        Edit
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #viewtemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Détail d'une demande</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="form-group">
+            <label>Prix</label>
+            <input type="number" class="form-control" formControlName="price"
+              id="price"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-8">
+        <div class="form-group">
+          <label>Nbre Jours</label>
+          <input type="number" class="form-control" formControlName="nbreJours"
+            id="nbreJours"
+            />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="update()"
+      >
+        Edit
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+
+<ng-template #delete>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    Are you sure want to delete this demande?
+    <div style="margin-top: 25px">
+      <button
+        type="button"
+        class="btn btn-default"
+        (mouseover)="btnColor()"
+        id="btn-yes"
+        (click)="deleteDemandeDTO()"
+      >
+        Yes
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (mouseover)="btnColorNo()"
+        id="btn-no"
+        (click)="decline()"
+      >
+        No
+      </button>
+    </div>
+  </div>
+</ng-template>

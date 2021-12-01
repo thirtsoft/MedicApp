@@ -1,0 +1,730 @@
+<!-- Breadcrumb -->
+<!-- <div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pharmacy Details</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Pharmacy Details</h2>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="breadcrumb-bar">
+  <div class="container-fluid">
+      <div class="row align-items-center">
+          <div class="col-md-12 col-12">
+              <nav aria-label="breadcrumb" class="page-breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a [routerLink]="''">Accueil</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">A Propos</li>
+                  </ol>
+              </nav>
+              <h2 class="breadcrumb-title">A Propos</h2>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <!-- Doctor Widget -->
+      <!--   <div class="card">
+            <div class="card-body">
+                <div class="doctor-widget">
+                    <div class="doc-info-left">
+                        <div class="doctor-img1">
+                            <a [routerLink]="'/pharmacy/pharmacy-details'">
+                                <img src="assets/img/medical-img1.jpg" class="img-fluid" alt="User Image">
+                            </a>
+                        </div>
+                        <div class="doc-info-cont">
+                            <h4 class="doc-name mb-2"><a [routerLink]="'/pharmacy/pharmacy-details'">Medlife Medical</a></h4>
+                            <div class="rating mb-2">
+                                <span class="badge badge-primary">4.0</span>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="d-inline-block average-rating">(17)</span>
+                            </div>
+                            <div class="clinic-details">
+                                <div class="clini-infos pt-3">
+
+                                <p class="doc-location mb-2"><i class="fas fa-phone-volume mr-1"></i> 320-795-8815</p>
+                                <p class="doc-location mb-2 text-ellipse"><i class="fas fa-map-marker-alt mr-1"></i> 96 Red Hawk Road Cyrus, MN 56323 </p>
+                                <p class="doc-location mb-2"><i class="fas fa-chevron-right mr-1"></i> Chemists, Surgical Equipment Dealer</p>
+
+                                <p class="doc-location mb-2"><i class="fas fa-chevron-right mr-1"></i> Opens at 08.00 AM</p>
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-info-right d-flex align-items-center justify-content-center">
+                        <div class="clinic-booking">
+                            <a class="view-pro-btn" [routerLink]="'/pharmacy/cart'">Send Message</a>
+                            <a class="apt-btn" href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">Call Now</a>
+                            <a [routerLink]="'/pharmacy/products'" class="view-pro-btn">Browse Products</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+        <!-- /Doctor Widget -->
+
+        <!-- Doctor Details Tab -->
+        <div class="card">
+            <div class="card-body pt-0">
+
+                <!-- Tab Menu -->
+                <nav class="user-tabs mb-4">
+                    <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#doc_overview" data-toggle="tab">Informations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#doc_locations" data-toggle="tab">Domaines de compétence </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#doc_reviews" data-toggle="tab">Logiciels utilisés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#doc_business_hours" data-toggle="tab">Heures d'ouvertures</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /Tab Menu -->
+
+                <!-- Tab Content -->
+                <div class="tab-content pt-0">
+
+                    <!-- Overview Content -->
+                    <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+                        <div class="row">
+                            <div class="col-md-9">
+
+                                <!-- About Details -->
+                                <div class="widget about-widget">
+                                    <h4 class="widget-title">Qui sommes-nous</h4>
+                                    <p>SIM est composée d’une équipe de médecins (ayant une formation en santé publique, bio-statistique et cartographie)
+                                      et d’informaticiens.
+                                      Nous proposons une aide dans les différentes étapes de rédaction de vos thèses, mémoires et articles scientifiques.
+                                      </p>
+                                </div>
+                                <!-- /About Details -->
+
+
+                                <!-- Awards Details -->
+                                <div class="widget awards-widget">
+                                    <h4 class="widget-title">Avantages de SIM </h4>
+                                    <div class="experience-box">
+                                        <ul class="experience-list">
+                                            <li>
+                                                <div class="experience-user">
+                                                    <div class="before-circle"></div>
+                                                </div>
+                                                <div class="experience-content">
+                                                    <div class="timeline-content">
+                                                        <p class="exp-year">Comment analyse t-on ?</p>
+                                                        <h4 class="exp-title">Nos analyses sont supervisées par des médecins,
+                                                          ayant une formation en santé publique et bio-statistique.
+                                                          Ce qui garantit une certaine qualité des résultats fournis ;</h4>
+                                                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                          Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p> -->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="experience-user">
+                                                    <div class="before-circle"></div>
+                                                </div>
+                                                <div class="experience-content">
+                                                    <div class="timeline-content">
+                                                        <p class="exp-year">Résultats</p>
+                                                        <h4 class="exp-title">Les résultats des analyses sont rendus avec les tableaux et figures commentés </h4>
+                                                       <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                                          Interdum et malesuada fames ac ante ipsum primis in faucibus.</p> -->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="experience-user">
+                                                    <div class="before-circle"></div>
+                                                </div>
+                                                <div class="experience-content">
+                                                    <div class="timeline-content">
+                                                        <p class="exp-year">Compte Rendu</p>
+                                                        <h4 class="exp-title">Le compte rendu contenant les résultats est rendu en un court délai</h4>
+                                           <!--              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                          Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p> -->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /Awards Details -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Overview Content -->
+
+                    <!-- Locations Content -->
+                    <div role="tabpanel" id="doc_locations" class="tab-pane fade">
+
+                        <!-- Location List -->
+                        <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-8">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Réalisation d’un masque de saisie (questionnaire, formulaire,…)</strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                       <!--  <div class="clinic-details mb-0">
+                                            <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 96 Red Hawk Road Cyrus, MN 56323  <br><a href="javascript:void(0);">Get Directions</a></h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-01.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-02.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-03.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-04.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+                                <div class="col-md-4">
+                                  <div class="clinic-content">
+                                      <h4 class="clinic-name">
+                                        <a href="javascript:void(0)">
+                                          <strong>Saisie des données </strong>
+                                        </a>
+                                      </h4>
+                                      <div class="rating">
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star"></i>
+                                          <span class="d-inline-block average-rating">(4)</span>
+                                      </div>
+
+                                  </div>
+                                </div>
+
+                                <!-- Clinic Timing -->
+                               <!--  <div class="col-md-6">
+                                    <div class="clinic-timing">
+                                        <div>
+                                            <p class="timings-days">
+                                                <span> Mon - Sat </span>
+                                            </p>
+                                            <p class="timings-times">
+                                                <span>10:00 AM - 2:00 PM</span>
+                                                <span>4:00 PM - 9:00 PM</span>
+                                            </p>
+                                        </div>
+                                        <div>
+                                        <p class="timings-days">
+                                            <span>Sun</span>
+                                        </p>
+                                        <p class="timings-times">
+                                            <span>10:00 AM - 2:00 PM</span>
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- /Clinic Timing -->
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                          <!-- Location List -->
+                          <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-8">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Analyse uni-variée : moyenne, écart-type, médiane, mode, proportion,…</strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                       <!--  <div class="clinic-details mb-0">
+                                            <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 96 Red Hawk Road Cyrus, MN 56323  <br><a href="javascript:void(0);">Get Directions</a></h5>
+                                            <ul>
+                                                <li>
+                                                    <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-01.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-02.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-03.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery2">
+                                                        <img src="assets/img/features/feature-04.jpg" alt="Feature Image">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                          <!-- Location List -->
+                          <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-8">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Analyse bi-variée : comparaison de proportion et de moyenne par les tests statistiques appropriés (Chi2, ANOVA,…) </strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                          <!-- Location List -->
+                          <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-8">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Analyse multi-variée : Régression linéaire et logistique </strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                                  <!-- Clinic Content -->
+                                  <div class="col-md-4">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Traduction d’article scientifiques </strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                          <!-- Location List -->
+                          <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-8">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Consultance sur l’utilisation des logiciels de bibliographie (Zotero), et d’analyse statistiques (Epi-Info, SPSS, Sphinx) </strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                          <!-- Location List -->
+                          <div class="location-list">
+                            <div class="row">
+
+                                <!-- Clinic Content -->
+                                <div class="col-md-4">
+                                    <div class="clinic-content">
+                                        <h4 class="clinic-name">
+                                          <a href="javascript:void(0)">
+                                            <strong>Recherche bibliographique </strong>
+                                          </a>
+                                        </h4>
+                                        <div class="rating">
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Clinic Content -->
+
+                                 <!-- Clinic Content -->
+                                 <div class="col-md-4">
+                                  <div class="clinic-content">
+                                      <h4 class="clinic-name">
+                                        <a href="javascript:void(0)">
+                                          <strong>Cartographie </strong>
+                                        </a>
+                                      </h4>
+                                      <div class="rating">
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star filled"></i>
+                                          <i class="fas fa-star"></i>
+                                          <span class="d-inline-block average-rating">(4)</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /Clinic Content -->
+
+                               <!-- Clinic Content -->
+                               <div class="col-md-4">
+                                <div class="clinic-content">
+                                    <h4 class="clinic-name">
+                                      <a href="javascript:void(0)">
+                                        <strong>Mise en page de document Word </strong>
+                                      </a>
+                                    </h4>
+                                    <div class="rating">
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star filled"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="d-inline-block average-rating">(4)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Clinic Content -->
+
+
+                            </div>
+                        </div>
+                        <!-- /Location List -->
+
+                    </div>
+                    <!-- /Locations Content -->
+
+                    <!-- Reviews Content -->
+                    <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
+
+                        <!-- Review Listing -->
+                        <div class="widget review-listing">
+                            <ul class="comments-list">
+
+                                <!-- Comment List -->
+                                <li>
+                                    <div class="comment">
+                                        <div class="comment-body">
+                                            <div class="meta-data">
+                                                <span class="comment-author">Pour la bibliographie : Zotero, EndNote,…</span>
+                                                <div class="review-count rating">
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <!-- /Comment List -->
+
+                                <!-- Comment List -->
+                                <li>
+                                    <div class="comment">
+                                        <div class="comment-body">
+                                            <div class="meta-data">
+                                                <span class="comment-author">Pour la Saisie et l’analyse statistique des données : Excel, Epi Info, Sphinx, SPSS, R,….</span>
+                                                <div class="review-count rating">
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- /Comment List -->
+
+                                 <!-- Comment List -->
+                                 <li>
+                                  <div class="comment">
+                                      <div class="comment-body">
+                                          <div class="meta-data">
+                                              <span class="comment-author">Pour la cartographie : QGIS</span>
+                                              <div class="review-count rating">
+                                                  <i class="fas fa-star filled"></i>
+                                                  <i class="fas fa-star filled"></i>
+                                                  <i class="fas fa-star filled"></i>
+                                                  <i class="fas fa-star filled"></i>
+                                                  <i class="fas fa-star"></i>
+                                              </div>
+                                          </div>
+
+                                      </div>
+                                  </div>
+                              </li>
+                              <!-- /Comment List -->
+
+                            </ul>
+
+                            <!-- Show All -->
+                            <!-- <div class="all-feedback text-center">
+                                <a href="javascript:void(0)" class="btn btn-primary btn-sm">
+                                    Show all feedback <strong>(167)</strong>
+                                </a>
+                            </div> -->
+                            <!-- /Show All -->
+
+                        </div>
+                        <!-- /Review Listing -->
+
+                        <!-- Write Review -->
+                       <!--  <div class="write-review">
+                            <h4>Write a review for <strong>Medlife Medical</strong></h4>
+
+
+                            <form>
+                                <div class="form-group">
+                                    <label>Review</label>
+                                    <div class="star-rating">
+                                        <input id="star-5" type="radio" name="rating" value="star-5">
+                                        <label for="star-5" title="5 stars">
+                                            <i class="active fa fa-star"></i>
+                                        </label>
+                                        <input id="star-4" type="radio" name="rating" value="star-4">
+                                        <label for="star-4" title="4 stars">
+                                            <i class="active fa fa-star"></i>
+                                        </label>
+                                        <input id="star-3" type="radio" name="rating" value="star-3">
+                                        <label for="star-3" title="3 stars">
+                                            <i class="active fa fa-star"></i>
+                                        </label>
+                                        <input id="star-2" type="radio" name="rating" value="star-2">
+                                        <label for="star-2" title="2 stars">
+                                            <i class="active fa fa-star"></i>
+                                        </label>
+                                        <input id="star-1" type="radio" name="rating" value="star-1">
+                                        <label for="star-1" title="1 star">
+                                            <i class="active fa fa-star"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Title of your review</label>
+                                    <input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
+                                </div>
+                                <div class="form-group">
+                                    <label>Your review</label>
+                                    <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
+
+                                  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="terms-accept">
+                                        <div class="custom-checkbox">
+                                           <input type="checkbox" id="terms_accept">
+                                           <label for="terms_accept">I have read and accept <a href="javascript:void(0)">Terms &amp; Conditions</a></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
+                                </div>
+                            </form>
+
+
+                        </div> -->
+
+
+                    </div>
+                    <!-- /Reviews Content -->
+
+                    <!-- Business Hours Content -->
+                    <div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-md-6 offset-md-3">
+
+                                <!-- Business Hours Widget -->
+                                <div class="widget business-widget">
+                                    <div class="widget-content">
+                                        <div class="listing-hours">
+                                            <div class="listing-day current">
+                                                <div class="day">Ouverture <span>tous les jours</span></div>
+                                                <div class="time-items">
+                                                    <span class="open-status"><span class="badge bg-success-light">Disponibilité</span></span>
+                                                    <span class="time">A partir de 07:00 AM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Lundi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 17:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Mardi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 17:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Mercredi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 17:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Jeudi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 17:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Vendredi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 17:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day">
+                                                <div class="day">Samedi</div>
+                                                <div class="time-items">
+                                                    <span class="time">07:00 AM - 12:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="listing-day closed">
+                                                <div class="day">Dimanche</div>
+                                                <div class="time-items">
+                                                    <span class="time"><span class="badge bg-danger-light">Fermer</span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Business Hours Widget -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Business Hours Content -->
+
+                </div>
+            </div>
+        </div>
+        <!-- /Doctor Details Tab -->
+
+    </div>
+</div>
+<!-- /Page Content -->

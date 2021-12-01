@@ -1,0 +1,71 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+					<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+				<!-- 	<h3 class="page-title">List of Services</h3> -->
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a [routerLink]="'/admin/'">Dashboard</a></li>
+					<!-- 	<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li> -->
+						<li class="breadcrumb-item active">Create Service</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<div class="table-responsive">
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Service ID</th>
+                    <th>Code</th>
+										<th>Nom Service</th>
+										<th>Description</th>
+                    <th>Date Creation</th>
+										<th>Actions</th>
+									<!-- 	<th>Phone</th>
+										<th>Last Visit</th>
+										<th class="text-right">Paid</th> -->
+									</tr>
+								</thead>
+								<tbody>
+								<!-- 	<tr *ngFor="let serv of listServiceDtoData; let i = index;">
+
+										<td>{{serv.id}}</td>
+										<td>{{serv.code}}</td>
+										<td>{{serv.name}}</td>
+                    <td>{{serv.description}}</td>
+										<td>{{serv.createdDate | date : 'dd MMM yyyy'}}</td>
+                    <td>
+                      <button class="btn btn-success btn-sm" (click)="editServiceDTO(serv)">
+                        <i class="fa fa-edit" aria-hidden="true"></i></button
+                      >&nbsp;
+
+                      <button
+                        class="btn btn-danger btn-sm"
+                        (click)="deleteServiceDTO(serv.id)"
+                      >
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+									</tr> -->
+
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

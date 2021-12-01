@@ -1,0 +1,571 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-5 col-auto">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/admin/'">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Liste des Demandes Encours</li>
+          </ul>
+        </div>
+
+        <div class="col-sm-4 col-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search"
+            [(ngModel)]="searchText"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="row-border hover table table-bordered table-center mb-0" aria-label="">
+                <thead>
+                  <tr>
+                    <th>Demandeur</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                    <th>Fichier</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let demandeDTO of listDemandeDtoData
+                        | filter: searchText
+                        | paginate: { itemsPerPage: 8, currentPage: p };
+                      let i = index
+                    "
+                  >
+                    <td>{{ demandeDTO.firstName }} {{ demandeDTO.lastName }}</td>
+                    <td>{{ demandeDTO.mobile }}</td>
+                    <td>{{ demandeDTO.email }}</td>
+                    <td>
+                      {{ demandeDTO.baseDeDonnee }} &nbsp;
+                      <a
+                        href="http://localhost:8081/website/v1/demandes/downloadDemandeFile/{{
+                          demandeDTO.baseDeDonnee
+                        }}"
+                        class="cv"
+                        >&nbsp;&nbsp;
+                        <em
+                          class="fa fa-download"
+                          style="cursor: pointer; align-items: flex-end"
+                        ></em
+                        >&nbsp;&nbsp;
+                      </a>
+                    </td>
+                    <td>{{ demandeDTO.status }}
+                     <!--  <button
+                          type="button"
+                          class="btn-success btn-sm pull-right"
+                          [disabled]="demandeDTO.status==='VALIDER'"
+                          (click)="addEditStatusDamndeDTO(demandeDTO)"
+                          style="cursor: pointer;"
+                        >
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button> -->
+                        <a
+                            class="btn btn-sm bg-success-light"
+                            data-toggle="modal"
+                            (click)="editModal(edittemplate, demandeDTO)"
+                            style="cursor: pointer;"
+                          >
+                          <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </td>
+                    <td>{{ demandeDTO.createdDate | date: "dd-MM-yyyy" }}</td>
+
+                    <td class="text-right">
+                      <div class="actions">
+
+                       <!--  <a class="btn btn-sm bg-warning-light" (click)="EnvoieMailToDemandeur(i)">
+                          <i class="fa fa-envelope" aria-hidden="true"></i></a
+                        >&nbsp; -->
+
+                        <a
+                            class="btn btn-sm bg-success-light"
+                            data-toggle="modal"
+                            (click)="mailModal(mailtemplate, demandeDTO)"
+                            style="cursor: pointer;"
+                          >
+                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>&nbsp;
+
+                        <a
+                            class="btn btn-sm bg-success-light"
+                            data-toggle="modal"
+                            (click)="viewModal(viewtemplate, demandeDTO)"
+                            style="cursor: pointer;"
+                          >
+                          <i class="fa fa-eye"></i>
+                        </a>&nbsp;
+
+
+                        <a
+                          data-toggle="modal"
+                          (click)="deleteModal(delete, demandeDTO)"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="fe fe-trash"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="pagination">
+                <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Ajouter Service</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+ <!--  <div class="modal-body">
+    <form>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Code</label>
+            <input
+              type="text"
+              class="form-control"
+              name="code"
+              [(ngModel)]="formDataServiceDTO.code"
+              #code="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="form-group">
+            <label>Nom Service</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              [(ngModel)]="formDataServiceDTO.name"
+              #name="ngModel"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              [(ngModel)]="formDataServiceDTO.description"
+              #description="ngModel"
+              id="description"
+              cols="7"
+              rows="7"
+            ></textarea>
+          </div>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" (click)="save()">
+        Save Changes
+      </button>
+    </form>
+  </div> -->
+</ng-template>
+
+<ng-template #edittemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modifier le status</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <select
+            name="status"
+            formControlName="status"
+            id="status"
+            class="form-control"
+          >
+            <option value="VALIDER">VALIDER</option>
+            <option value="ENCOURS">ENCOURS</option>
+            <option value="ANNULER">ANNULER</option>
+          </select>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="update()"
+      >
+        Edit
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #viewtemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Détail Demande</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="viewForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Numero</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="numero"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Nom</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Mobile</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="mobile"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Type Etude</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="typeEtude"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Directeur Thèse</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="directorThese"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>Spécialité</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="speciality"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Masque saisi</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              formControlName="masqueSaisi"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-3">
+          <div class="form-group">
+            <label>Saisie de Données</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              formControlName="saisiDonnees"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Analyse Univ</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              formControlName="analyseUnvaried"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-2">
+          <div class="form-group">
+            <label>Analyse Biv</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              formControlName="analyseBivarie"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="form-group">
+            <label>Analyse Multiv</label>
+            <input
+              type="checkbox"
+              class="form-control"
+              formControlName="analyseMultivariate"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Suject de Thèse</label>
+            <textarea
+              id="subjectThese" cols="2" rows="2"
+              type="text"
+              class="form-control"
+              formControlName="subjectThese"
+              readonly
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="modalRef.hide()"
+      >
+        Fermer
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #mailtemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Envoyer un Email au Demandeur</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="mailForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Email Demandeur</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Object</label>
+            <input
+              type="text"
+              id="subject"
+              class="form-control"
+              formControlName="subject"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Message</label>
+            <textarea
+                id="message" cols="5" rows="5"
+                type="text"
+                class="form-control"
+                formControlName="message"
+              ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="mailToDemandeur()"
+      >
+        Envoyer Email
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+
+
+<ng-template #delete>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    Are you sure want to delete this speciality?
+    <div style="margin-top: 25px">
+      <button
+        type="button"
+        class="btn btn-default"
+        (mouseover)="btnColor()"
+        id="btn-yes"
+        (click)="deleteDemandeDTO()"
+      >
+        Yes
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (mouseover)="btnColorNo()"
+        id="btn-no"
+        (click)="decline()"
+      >
+        No
+      </button>
+    </div>
+  </div>
+</ng-template>
