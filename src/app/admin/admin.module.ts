@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelect2Module } from 'ng-select2';
 import { ViewDemandeComponent } from './appointements/view-demande/view-demande.component';
 
+
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent, ViewDemandeComponent],
   imports: [

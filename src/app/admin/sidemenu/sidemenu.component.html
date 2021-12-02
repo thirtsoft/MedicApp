@@ -161,16 +161,18 @@
 				<li [class.active]="page === 'Patients'">
 					<a (click)="change('Patients')" [routerLink]="'/admin/patients'" ><i class="fe fe-user"></i> <span>Demandes Annulees</span></a>
 				</li>
+        <li [class.active]="page === 'Transactions'">
+					<a (click)="change('Transactions')" [routerLink]="'/admin/transactions'"><i class="fe fe-activity"></i> <span>Graphiques</span></a>
+				</li>
         <li [class.active]="page === 'Specialities'">
 					<a  (click)="change('Specialities')" [routerLink]="'/admin/specialities'"><i class="fe fe-users"></i> <span>Services</span></a>
 				</li>
 				<li  [class.active]="page === 'Reviews'">
 					<a (click)="change('Reviews')" [routerLink]="'/admin/reviews'" ><i class="fa fa-envelope-open"></i> <span>Emails</span></a>
 				</li>
-			<!-- 	<li [class.active]="page === 'Transactions'">
-					<a (click)="change('Transactions')" [routerLink]="'/admin/transactions'"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-				</li>
-				<li  [class.active]="page === 'Settings'">
+
+				<!--
+        <li  [class.active]="page === 'Settings'">
 					<a (click)="change('Settings')" [routerLink]="'/admin/settings'"><i class="fe fe-vector"></i> <span>Settings</span></a>
 				</li>
 				<li class="submenu">

@@ -1,7 +1,11 @@
+import { DemandeDto } from './../../models/demande';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonServiceService } from '../../common-service.service';
 import * as $ from 'jquery';
+import { Chart } from 'chart.js';
+
+import { DashboardService } from './../../services/dashboard.service';
 
 @Component({
   selector: 'app-transactions',
@@ -13,10 +17,66 @@ export class TransactionsComponent implements OnInit {
   transactionsList: any = [];
   errorMessage: string;
   id;
-  constructor(public commonService: CommonServiceService, private modalService: BsModalService) { }
+
+  Linechart: any = [];
+
+  ChiffreAffaireMois: number[] = [];
+  DemandeOfMonth: Date[] = [];
+
+  listMois: any={}
+
+  constructor(public commonService: CommonServiceService,
+              private modalService: BsModalService,
+              private crudApi: DashboardService) { }
 
   ngOnInit(): void {
-    this.getTransactions();
+    this.crudApi.getSumtotalOfDemandeByMonth()
+      .subscribe((result: DemandeDto[]) => {
+        this.listMois = result;
+        const n = 1;
+        const m = 0;
+        console.log(this.listMois);
+        for (let i=0; i<this.listMois.length; i++) {
+          this.ChiffreAffaireMois.push(this.listMois[i][n]);
+          this.DemandeOfMonth.push(this.listMois[i][m]);
+        }
+    //  this
+        this.Linechart = new Chart('lineChart', {
+          type: 'line',
+          data: {
+            labels: this.DemandeOfMonth,
+
+            datasets: [
+              {
+                data: this.ChiffreAffaireMois,
+                borderColor: '#3cb371',
+                backgroundColor: "#FF7F50",
+              }
+            ]
+          },
+          options: {
+            legend: {
+              display: false
+            },
+            responsive: true,
+            scales: {
+              xAxes: [{
+                display: true,
+                ticks: {
+                  beginAtZero: true
+                }
+              }],
+              yAxes: [{
+                display: true,
+                ticks: {
+                  beginAtZero: true
+                }
+              }],
+            }
+          }
+        });
+      }
+    );
   }
 
   deleteModal(template: TemplateRef<any>, trans) {
@@ -27,7 +87,7 @@ export class TransactionsComponent implements OnInit {
   deleteTrans() {
     this.transactionsList = this.transactionsList.filter(a => a.id !== this.id);
     this.modalRef.hide();
-    // this.commonService.deleteTransaction(this.id).subscribe((data : any[])=>{      
+    // this.commonService.deleteTransaction(this.id).subscribe((data : any[])=>{
     //   this.getTransactions();
     // });
   }

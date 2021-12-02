@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ForgotPasswordModule } from './../../forgot-password/forgot-password.module';
 // import { MorrisJsModule } from 'angular-morris-js';
 
-//import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -14,7 +14,7 @@ import { ForgotPasswordModule } from './../../forgot-password/forgot-password.mo
     DashboardRoutingModule,
     ForgotPasswordModule,
     // MorrisJsModule,
-  //  ChartsModule
+    ChartsModule
   ],
 })
 export class DashboardModule {}

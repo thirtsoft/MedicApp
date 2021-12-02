@@ -4,13 +4,15 @@ import { DataTablesModule } from 'angular-datatables';
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
 
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [TransactionsComponent],
   imports: [
     CommonModule,
     TransactionsRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    ChartsModule
   ]
 })
 export class TransactionsModule { }
