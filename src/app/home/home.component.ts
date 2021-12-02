@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {
       class: 'modal-lg modal-dialog-centered',
-    }); 
+    });
     // this.name = "";
     // this.id = "";
     // this.key = "";
@@ -196,7 +196,8 @@ export class HomeComponent implements OnInit {
   save() {
     console.log(this.formDataDemandeDTO);
     console.log(this.fileDemande);
-    this.crudApi.addDemandeDtoWithFiles(this.formDataDemandeDTO, this.fileDemande)
+  //  this.crudApi.addDemandeDtoWithFiles(this.formDataDemandeDTO, this.fileDemande)
+    this.crudApi.addDemandeDtoWithFilesInPath(this.formDataDemandeDTO, this.fileDemande)
       .subscribe( data => {
         this.modalRef.hide();
         console.log("Result : " + data);

@@ -12,7 +12,9 @@ export class DemandeService {
 
 //  private apiServerUrl = environment.apiBaseUrl;
 
-  public apiServerUrl = "http://localhost:8081/website/v1";
+//  public apiServerUrl = "http://localhost:8081/website/v1";
+
+  public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
 
 //  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
@@ -57,6 +59,14 @@ export class DemandeService {
     data.append('file',file);
 
     return this.http.post(`${this.apiServerUrl}/demandes/createDemandeWithFile`, data, {responseType: 'text'});
+  }
+
+  public addDemandeDtoWithFilesInPath(demande, file:File): Observable<any> {
+    const data:FormData= new FormData();
+    data.append('demande',JSON.stringify(demande));
+    data.append('file',file);
+
+    return this.http.post(`${this.apiServerUrl}/demandes/createDemandeWithFileInPath`, data, {responseType: 'text'});
   }
 
   public addDemandeDtoWithUser(demandeDto: DemandeDto, id: number): Observable<DemandeDto> {
