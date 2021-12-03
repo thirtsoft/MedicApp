@@ -4,42 +4,62 @@
         <div class="container">
             <div class="loginbox">
                 <div class="login-left">
-                    <img class="img-fluid" src="assets/admin/img/logo-white.png" alt="Logo">
+                    <img class="img-fluid" src="assets/admin/img/logo-login-sim.jpg" alt="Logo">
                 </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
                         <h1>Login</h1>
-                        <p class="account-subtitle">Access to our dashboard</p>
-                        
+                        <p class="account-subtitle">Accéder à votre Tableau de bord</p>
+
                         <!-- Form -->
-                        <form>
+                        <form name="form" (ngSubmit)="f.form.valid" #f="ngForm">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Email">
+                              <input class="form-control" type="text" placeholder="Nom utilisateur"
+                                name="username"
+                                id="username"
+                                [(ngModel)]="form.username"
+                                #username="ngModel"
+                              >
+                              <div *ngIf="f.submitted && username.invalid">
+                                <div *ngIf="username.errors.required">Nom utilisateur est incorrect</div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <input class="form-control" type="text"
+                                name="password"
+                                id="password"
+                                [(ngModel)]="form.password"
+                                #password="ngModel"
+                                placeholder="Password"
+                              >
+                              <div *ngIf="f.submitted && password.invalid">
+                                <div *ngIf="password.errors.required">Password est obligatoire</div>
+                                <div *ngIf="password.errors.minlength">Password doit avoir au moins 6 characters</div>
+                              </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                <button (click)="onSubmit()" class="btn btn-primary btn-block" type="submit">Login</button>
                             </div>
                         </form>
                         <!-- /Form -->
-                        
-                        <div class="text-center forgotpass"><a [routerLink]="'/admin/forgot-pass'">Forgot Password?</a></div>
+
+                       <!--  <div class="text-center forgotpass"><a [routerLink]="'/admin/forgot-pass'">Forgot Password?</a></div>
                         <div class="login-or">
                             <span class="or-line"></span>
                             <span class="span-or">or</span>
                         </div>
-                          
-                        <!-- Social Login -->
+
+
                         <div class="social-login">
                             <span>Login with</span>
                             <a href="javascript:void(0);" class="facebook"><i class="fa fa-facebook"></i></a><a href="javascript:void(0);" class="google"><i class="fa fa-google"></i></a>
                         </div>
-                        <!-- /Social Login -->
-                        
+
+
                         <div class="text-center dont-have">Don’t have an account? <a [routerLink]="'/admin/register'">Register</a></div>
-                    </div>
+ -->
+                      </div>
                 </div>
             </div>
         </div>

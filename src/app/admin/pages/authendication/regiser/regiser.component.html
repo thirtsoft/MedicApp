@@ -4,47 +4,165 @@
         <div class="container">
             <div class="loginbox">
                 <div class="login-left">
-                    <img class="img-fluid" src="assets/admin/img/logo-white.png" alt="Logo">
+                    <img class="img-fluid" src="assets/admin/img/logo-login-sim.jpg" alt="Logo">
                 </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
-                        <h1>Register</h1>
-                        <p class="account-subtitle">Access to our dashboard</p>
-                        
+                        <h1>Création compte</h1>
+                        <p class="account-subtitle">Créer un compte </p>
+
                         <!-- Form -->
-                        <form>
+                        <form [formGroup]="registrationForm">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Name">
+                              <input class="form-control" type="text"
+                                id="name"
+                                formControlName="name"
+                                placeholder="Nom Complet"
+                                autofocus
+                                required
+                              >
+                              <div
+                                class="alert alert-danger"
+                                *ngIf="
+                                registrationForm.get('name').invalid &&
+                                registrationForm.get('name').touched
+                                "
+                              >
+                                <div *ngIf="registrationForm.get('name').errors.required">
+                                  Name est obligatoire
+                                </div>
+                              </div>
                             </div>
+
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Email">
+                              <input class="form-control" type="text"
+                                placeholder="Nom utilisateur"
+                                id="username"
+                                formControlName="username"
+                                required
+                              >
+                              <div
+                                class="alert alert-danger"
+                                *ngIf="
+                                  registrationForm.get('username').invalid &&
+                                  registrationForm.get('username').touched
+                                "
+                              >
+                                <div
+                                  *ngIf="registrationForm.get('username').errors.required"
+                                >
+                                  Username est obligatoire
+                                </div>
+                              </div>
                             </div>
+
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password">
+                              <input class="form-control" type="text"
+                                type="email"
+                                id="email"
+                                formControlName="email"
+                                required
+                                email
+                                id="exampleInputEmail"
+                                placeholder="Email Address"
+                              >
+                              <div
+                                class="alert alert-danger"
+                                *ngIf="
+                                  registrationForm.get('email').invalid &&
+                                  registrationForm.get('email').touched
+                                "
+                              >
+                                <div *ngIf="registrationForm.get('email').errors.required">
+                                  Email doit etre une adresse email correcte
+                                </div>
+                              </div>
                             </div>
+
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Confirm Password">
+                              <input class="form-control" type="password"
+                                id="password"
+                                formControlName="password"
+                                required
+                                minlength="6"
+                                placeholder="Mot de Password"
+                              >
+                              <div
+                                class="alert alert-danger"
+                                *ngIf="
+                                  registrationForm.get('password').invalid &&
+                                  registrationForm.get('password').touched
+                                "
+                              >
+                                <div
+                                  *ngIf="registrationForm.get('password').errors.required"
+                                >
+                                  Password est obligatorie
+                                </div>
+                                <div
+                                  *ngIf="
+                                    registrationForm.get('password').errors.minlength
+                                  "
+                                >
+                                  Password doit avoir plus de 6 characters
+                                </div>
+                              </div>
                             </div>
+
+                            <div class="form-group">
+                              <label>Choisir un Role</label>
+
+                              <div
+                                class="form-check"
+                                *ngFor="
+                                  let role of registrationForm.get('roleSelection')[
+                                    'controls'
+                                  ];
+                                  let i = index
+                                "
+                              >
+                                <label class="custom-control-label">
+                                  <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    [formControl]="role"
+                                  />
+                                  {{ roles[i].name }}
+                                </label>
+                              </div>
+                            </div>
+
+
                             <div class="form-group mb-0">
-                                <button class="btn btn-primary btn-block" type="submit">Register</button>
+                              <button (click)="onSubmit()"
+                                class="btn btn-primary btn-block" type="submit">Créer compte</button>
                             </div>
-                        </form>
+
+                            <div
+                              *ngIf="submitted && isSignUpFailed"
+                              class="alert alert-warning"
+                            >
+                              Compte n'est pas crée!<br />{{ errorMessage }}
+                            </div>
+
+                          </form>
                         <!-- /Form -->
-                        
-                        <div class="login-or">
+
+                       <!--  <div class="login-or">
                             <span class="or-line"></span>
                             <span class="span-or">or</span>
                         </div>
-                        
-                        <!-- Social Login -->
+
+
                         <div class="social-login">
                             <span>Register with</span>
                             <a href="javascript:void(0);" class="facebook"><i class="fa fa-facebook"></i></a><a href="javascript:void(0);" class="google"><i class="fa fa-google"></i></a>
                         </div>
-                        <!-- /Social Login -->
-                        
+
+
                         <div class="text-center dont-have">Already have an account? <a [routerLink]="'/admin/login-form'">Login</a></div>
-                    </div>
+ -->
+                      </div>
                 </div>
             </div>
         </div>

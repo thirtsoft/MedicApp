@@ -1,7 +1,7 @@
 export class Utilisateur {
 }
 
-export class UtilisateurGetDto {
+export class UtilisateurDto {
 
   id: number;
   name: string;
