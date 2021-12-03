@@ -1,12 +1,12 @@
 <!-- Page Wrapper -->
 <div class="page-wrapper">
     <div class="content container-fluid">
-        
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Profile</h3>
+                    <!-- <h3 class="page-title">Profile</h3> -->
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="'/admin/'">Dashboard</a></li>
                         <li class="breadcrumb-item active">Profile</li>
@@ -15,24 +15,58 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-header">
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
                             <a href="javascript:void(0);">
-                                <img class="rounded-circle" alt="User Image" src="assets/admin/img/profiles/avatar-01.jpg">
+                              <img
+                                [src]="
+                                  this.userService.apiServerUrl +
+                                  '/utilisateurs/avatar/' +
+                                  this.id +
+                                  '?ts=' +
+                                  getTS()
+                                "
+                                class="rounded-circle"
+                                alt="User Image"
+                                *ngIf="img"
+                              />
+
+                                <img class="rounded-circle" alt="User Image"
+                                  src="assets/admin/img/profiles/avatar-01.jpg"
+                                  *ngIf="!img"
+                                >
                             </a>
+                            <br />
+
+                            <input
+                              type="file"
+                              (change)="onSelectedFile($event)"
+                              class="select"
+                              accept="image/*"
+                            />&nbsp;&nbsp;
+                            <input
+                              type="submit"
+                              value="enregistrer photo"
+                              class="btn btn-sm btn-info"
+                              style="cursor: pointer"
+                            />
+                            {{ progress }}
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
-                            <h4 class="user-name mb-0">Ryan Taylor</h4>
+                            <h4 class="user-name mb-0">{{ listDataProfil.name }}</h4>
+                            <h6 class="text-muted">{{ listDataProfil.username }}</h6>
+                            <div class="user-Location"><i class="fa fa-map-marker"></i> {{ listDataProfil.email }}</div>
+                            <!-- <h4 class="user-name mb-0">Ryan Taylor</h4>
                             <h6 class="text-muted">ryantaylor@admin.com</h6>
-                            <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div>
+                            <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div> -->
                             <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                         </div>
                         <div class="col-auto profile-btn">
-                            
+
                             <a href="javascript:void(0);" class="btn btn-primary">
                                 Edit
                             </a>
@@ -48,48 +82,48 @@
                             <a class="nav-link" id="pass" (click)="pass()" >Password</a>
                         </li>
                     </ul>
-                </div>	
-                <div class="tab-content profile-tab-cont">                    
+                </div>
+                <div class="tab-content profile-tab-cont">
                     <!-- Personal Details Tab -->
                     <div class="tab-pane fade show active" id="per_details_tab">
-                    
+
                         <!-- Personal Details -->
                         <div class="row">
                             <div class="col-lg-12">
                             <div class="card"  *ngIf="personalDetails">
                                 <div class="card-body">
                                     <h5 class="card-title d-flex justify-content-between">
-                                        <span>Personal Details</span> 
+                                        <span>Personal Details</span>
                                         <a class="edit-link" data-toggle="modal" href="javascript:void(0)"><i class="fa fa-edit mr-1"></i>Edit</a>
                                     </h5>
                                     <div class="row">
                                         <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
-                                        <p class="col-sm-10">John Doe</p>
+                                        <p class="col-sm-10">{{ listDataProfil.name }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                        <p class="col-sm-10">24 Jul 1983</p>
+                                        <p class="col-sm-10">{{ listDataProfil.username }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
-                                        <p class="col-sm-10">johndoe@example.com</p>
+                                        <p class="col-sm-10">{{ listDataProfil.email }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                        <p class="col-sm-10">305-310-5857</p>
+                                        <p class="col-sm-10">{{ listDataProfil.name }}</p>
                                     </div>
                                     <div class="row">
                                         <p class="col-sm-2 text-muted text-sm-right mb-0">Address</p>
-                                        <p class="col-sm-10 mb-0">4663  Agriculture Lane,<br>
-                                        Miami,<br>
+                                        <p class="col-sm-10 mb-0">{{ listDataProfil.name }},<br>
+                                       <!--  Miami,<br>
                                         Florida - 33165,<br>
-                                        United States.</p>
+                                        United States.</p> -->
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
                                 <!-- Change Password Tab -->
                             <div *ngIf="changePass">
-                            
+
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Change Password</h5>
@@ -210,7 +244,7 @@
                 </div>
             </div>
         </div>
-    
-    </div>			
+
+    </div>
 </div>
 <!-- /Page Wrapper -->

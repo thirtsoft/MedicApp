@@ -1,3 +1,5 @@
+import { UtilisateurService } from './../../services/utilisateur.service';
+import { TokenStorageService } from './../auth/token-storage.service';
 import { DemandeDto } from './../../models/demande';
 import {Component, OnInit, AfterViewInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,7 +19,9 @@ declare var Morris: any; */
 export class DashboardComponent implements OnInit {
 
   constructor(public crudApi: DashboardService,
-              public router: Router
+              public router: Router,
+              private tokenService: TokenStorageService,
+              public userService: UtilisateurService,
   ) {}
 
   numberOfDemandeInDay;
@@ -34,8 +38,33 @@ export class DashboardComponent implements OnInit {
 
   Barchart: any = [];
 
+  info: any;
+  roles: string[];
+
+  currentTime: number = 0;
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showUserBoard = false;
+  showVendeurBoard = false;
+
+  username: string;
+  email: String;
 
   ngOnInit(): void {
+
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+
+      this.username = user.username;
+
+    }
 
     this.getNumberOfDemandeInMonth();
 

@@ -1,3 +1,7 @@
+import { ToastrService } from 'ngx-toastr';
+import { UtilisateurService } from './../../services/utilisateur.service';
+import { TokenStorageService } from './../auth/token-storage.service';
+import { DashboardService } from './../../services/dashboard.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
@@ -14,12 +18,70 @@ export class SidemenuComponent implements OnInit {
   public bellCollapsed = true;
   public userCollapsed = true;
 
+  info: any;
+  roles: string[];
+
+  currentTime: number = 0;
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showUserBoard = false;
+  showVendeurBoard = false;
+
+  username: string;
+  email: String;
+  userId;
+  photo;
+  img: boolean;
+
+
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
-    private commonService: CommonServiceService
+    private commonService: CommonServiceService,
+
+    private dashboardService: DashboardService,
+    private tokenService: TokenStorageService,
+    public userService: UtilisateurService,
+    public toastr: ToastrService,
   ) {}
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showVendeurBoard = this.roles.includes("ROLE_VENDEUR");
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+
+      this.username = user.username;
+      this.userId = user.id;
+      this.photo = user.photo;
+
+      if (this.userService.getUserAvatar(this.userId) === null)
+        this.img = false;
+      else this.img = true;
+
+    }
+  }
+
+  logout() {
+    this.tokenService.signOut();
+    this.router.navigateByUrl("admin");
+  //  window.location.reload();
+  }
+
+  getProfile() {
+  //  this.router.navigate(['/admin/profile/' + this.userId]);
+    this.router.navigate(['/admin/doc-profile/' + this.userId]);
+  }
+
+  getTS() {
+    return this.currentTime;
+  }
+
 
   ngAfterViewInit() {
     this.loadDynmicallyScript('assets/admin/js/script.js');

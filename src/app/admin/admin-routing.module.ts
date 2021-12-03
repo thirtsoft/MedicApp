@@ -45,7 +45,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'doc-profile',
+        path: 'doc-profile/:id',
         loadChildren: () =>
           import('./doc-profile/doc-profile.module').then(
             (m) => m.DocProfileModule

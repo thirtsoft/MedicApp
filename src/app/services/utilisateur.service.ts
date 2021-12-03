@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+
+import { Observable } from 'rxjs';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 
 import { UtilisateurDto } from './../models/utilisateur';
 
@@ -24,64 +24,44 @@ export class UtilisateurService {
   ) {
   }
 
-
   /**************************** UtilisateurDto ******************/
   public getUtilisateurDtos(): Observable<UtilisateurDto[]> {
     return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/all`);
   }
 
-  public getUtilisateurDtosOrderDesc(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/allUtilisateursOrderDesc`);
+  public getAllUtilisateurDtosOrderByIdDesc(): Observable<UtilisateurDto[]> {
+    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAllUtilisateurOrderByIdDesc`);
   }
 
-  public getUtilisateurDtoById(demId: number): Observable<UtilisateurDto> {
-    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${demId}`);
+  public getUtilisateurDtoById(userId: number): Observable<UtilisateurDto> {
+    return this.http.get<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/findById/${userId}`);
   }
 
-  public addUtilisateurDto(UtilisateurDto: UtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, UtilisateurDto);
+  public addUtilisateurDto(utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/create`, utilisateurDTO);
   }
 
-
-  public addUtilisateurDtoWithUser(UtilisateurDto: UtilisateurDto, id: number): Observable<UtilisateurDto> {
-    return this.http.post<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/createAnnonceWithUser?id=`+id, UtilisateurDto);
+  public updateUtilisateurDto(utilisateurId: number, utilisateurDTO: UtilisateurDto): Observable<UtilisateurDto> {
+    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${utilisateurId}`, utilisateurDTO);
   }
 
-  public updateUtilisateurDto(demId: number, UtilisateurDto: UtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.put<UtilisateurDto>(`${this.apiServerUrl}/utilisateurs/update/${demId}`, UtilisateurDto);
+  public getUserAvatar(id: number){
+    return this.http.get(`${this.apiServerUrl}/utilisateurs/avatar/`+ id);
   }
 
-  public deleteUtilisateurDto(demId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${demId}`);
+  uploadPhotoUtilisateur(file: File, id: number): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+    const req = new HttpRequest('POST', this.apiServerUrl+'/utilisateurs/uploadUserPhoto/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
   }
 
-  public getListUtilisateurDtoBySelectedIsTrue(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAnnonceBySelectedIsTrue`);
-  }
-
-  public getListUtilisateurDtoByKeyword(reference: string): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAnnonceByKeyword?reference=`+reference);
-  }
-
-  public getListUtilisateurDtoByLibeele(libelle: string): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAnnonceByLibelle?libelle=`+libelle);
-  }
-
-  public get5LatestUtilisateurDtoByOrderByIdDesc(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/search5LatestAnnonceByIdDesc`);
-  }
-
-  public getUtilisateurDtoByStatusEncours(): Observable<UtilisateurDto[]> {
-    return this.http.get<UtilisateurDto[]>(`${this.apiServerUrl}/utilisateurs/searchAnnonceByStatusEncours`);
-  }
-
-
-  public countNumberOfutilisateurs(): Observable<any>  {
-    return this.http.get(`${this.apiServerUrl}/utilisateurs/NumbersOfutilisateurs`);
-  }
-
-  public countNumberOfAnnonceByStatusPending(): Observable<any>  {
-    return this.http.get(`${this.apiServerUrl}/utilisateurs/NumbersOfAnnonceByStatusPending`);
+  public deleteUtilisateurDto(utilisateurId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/utilisateurs/delete/${utilisateurId}`);
   }
 
 }
