@@ -20,6 +20,13 @@
             <div class="col-md-12">
                 <div class="profile-header">
                     <div class="row align-items-center">
+                      <form
+                        #addProfilForm="ngForm"
+                        name="form"
+                        enctype="multipart/form-data"
+                        (ngSubmit)="processForm()"
+                      >
+
                         <div class="col-auto profile-image">
                             <a href="javascript:void(0);">
                               <img
@@ -56,20 +63,24 @@
                             />
                             {{ progress }}
                         </div>
+                      </form>
+
                         <div class="col ml-md-n2 profile-user-info">
                             <h4 class="user-name mb-0">{{ listDataProfil.name }}</h4>
-                            <h6 class="text-muted">{{ listDataProfil.username }}</h6>
-                            <div class="user-Location"><i class="fa fa-map-marker"></i> {{ listDataProfil.email }}</div>
+                            <!-- <h6 class="text-muted">{{ listDataProfil.username }}</h6>
+                            <div class="user-Location"><i class="fa fa-map-marker"></i> {{ listDataProfil.email }}</div> -->
                             <!-- <h4 class="user-name mb-0">Ryan Taylor</h4>
                             <h6 class="text-muted">ryantaylor@admin.com</h6>
                             <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div> -->
-                            <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                            <div class="about-text">
+                              Je m'appele {{ listDataProfil.name }}, employé à SIM SENEGAL
+                              .
                         </div>
                         <div class="col-auto profile-btn">
 
-                            <a href="javascript:void(0);" class="btn btn-primary">
+                           <!--  <a href="javascript:void(0);" class="btn btn-primary">
                                 Edit
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -129,18 +140,46 @@
                                         <h5 class="card-title">Change Password</h5>
                                         <div class="row">
                                             <div class="col-md-10 col-lg-6">
-                                                <form>
+                                                <form  #addUsernameForm="ngForm"
+                                                  name="form"
+                                                  (ngSubmit)="addUsernameForm.form.valid && onSubmit()"
+                                                >
                                                     <div class="form-group">
-                                                        <label>Old Password</label>
-                                                        <input type="password" class="form-control">
+                                                        <label>Username</label>
+                                                        <input
+                                                          type="text"
+                                                          class="form-control"
+                                                          [(ngModel)]="formDataProfile.username"
+                                                          name="username"
+                                                          id="username"
+                                                          #username="ngModel"
+                                                          placeholder="votre nom d'utiisateur"
+                                                          required
+                                                        />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Ancien Password</label>
+                                                        <input
+                                                          type="password"
+                                                          class="form-control"
+                                                          [(ngModel)]="formDataProfile.oldPassword"
+                                                          name="oldPassword"
+                                                          id="oldPassword"
+                                                          #oldPassword="ngModel"
+                                                          placeholder="votre ancien password"
+                                                          required
+                                                        >
                                                     </div>
                                                     <div class="form-group">
                                                         <label>New Password</label>
-                                                        <input type="password" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Confirm Password</label>
-                                                        <input type="password" class="form-control">
+                                                        <input type="password" class="form-control"
+                                                          [(ngModel)]="formDataProfile.newPassword"
+                                                          name="newPassword"
+                                                          id="newPassword"
+                                                          #newPassword="ngModel"
+                                                          placeholder="votre nouveau password"
+                                                          required
+                                                        >
                                                     </div>
                                                     <button class="btn btn-primary" type="submit">Save Changes</button>
                                                 </form>

@@ -9,7 +9,7 @@ import { AuthService } from './../auth/auth.service';
 import { UtilisateurService } from './../../services/utilisateur.service';
 
 import { UtilisateurDto } from './../../models/utilisateur';
-import { ProfilInfo } from './../auth/profil-info';
+import { ProfilInfo, UpdatePasswordInfo } from './../auth/profil-info';
 
 
 @Component({
@@ -28,6 +28,7 @@ export class DocProfileComponent implements OnInit {
 
   profileInfo: ProfilInfo = {} as ProfilInfo;
   listDataProfil: UtilisateurDto = new UtilisateurDto();
+  formDataProfile: UpdatePasswordInfo  = new UpdatePasswordInfo();
   email;
 
   editPhoto: boolean;
@@ -64,8 +65,14 @@ export class DocProfileComponent implements OnInit {
     this.name = user.name;
 
     if (this.userService.getUserAvatar(this.userId) === null)
-    this.img = false;
+      this.img = false;
     else this.img =true;
+
+    this.formDataProfile = {
+      username: '',
+      oldPassword: '',
+      newPassword: '',
+    };
 
   }
 
@@ -110,6 +117,20 @@ export class DocProfileComponent implements OnInit {
       }
     );
     this.selectedFiles = undefined;
+  }
+
+  onSubmit() {
+    console.log(this.formDataProfile);
+    this.authService.updatePassword(this.formDataProfile).
+    subscribe( data => {
+      this.toastr.warning('veuillez vous reconnectez','Votre Mot de pqsse a ete modifie avec success', {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+      });
+      this.logout();
+      console.log(data);
+    });
+
   }
 
  /*  addEditUsername(item: UtilisateurDto) {

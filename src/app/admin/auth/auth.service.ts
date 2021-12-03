@@ -27,7 +27,7 @@ export class AuthService {
 
   public loginUrl = 'http://localhost:8081/website/v1/auth/signIn';
 
-  public baseUrl_1 = 'http://localhost:8081/website/v1/auth/authenticated';
+  public baseUrl_1 = 'http://localhost:8081/website/v1';
 
   public apiServerUrl = 'http://localhost:8081/website/v1/auth/authenticated';
 
