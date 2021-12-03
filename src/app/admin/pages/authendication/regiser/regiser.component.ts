@@ -19,9 +19,9 @@ export class RegiserComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   roles: any = [
-    { name: 'Assistant', id:1, selected: true },
-    { name: 'Manager', id:2, selected: false },
-    { name: 'Admin', id:3, selected: false },
+    { name: 'Utilisateur', id:1, selected: true },
+    { name: 'Gestionnaire', id:2, selected: false },
+    { name: 'Manager', id:3, selected: false },
   ];
   selectedRoles: string[];
 
