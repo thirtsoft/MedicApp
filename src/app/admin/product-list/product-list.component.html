@@ -1,15 +1,17 @@
 <div class="page-wrapper">
-	<div class="content container-fluid">
-		<!-- Page Header -->
-		<div class="page-header">
-			<div class="row">
-				<div class="col-sm-7 col-auto">
-					<!-- <h3 class="page-title">Products</h3> -->
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a [routerLink]="'/admin/'">Dashboard</a></li>
-						<li class="breadcrumb-item active">Liste des utilisateurs</li>
-					</ul>
-				</div>
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-7 col-auto">
+          <!-- <h3 class="page-title">Products</h3> -->
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/admin/'">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Liste des utilisateurs</li>
+          </ul>
+        </div>
 
         <div class="col-sm-4 col-3">
           <input
@@ -19,35 +21,39 @@
             [(ngModel)]="searchText"
           />
         </div>
-			</div>
-		</div>
-		<!-- /Page Header -->
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Recent Orders -->
-				<div class="card">
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="row-border hover table table-hover table-center mb-0">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Nom Complet</th>
-										<th>Nom Utilisateur</th>
+      </div>
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Recent Orders -->
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="row-border hover table table-hover table-center mb-0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom Complet</th>
+                    <th>Nom Utilisateur</th>
                     <th>Addresse</th>
                     <th>Mobile</th>
                     <th>Email</th>
-										<th class="text-right">Actions</th>
-									</tr>
-								</thead>
-								<tbody>
-								<!-- 	<tr *ngFor="let product of products"> -->
-                  <tr *ngFor="
-                        let userDTO of utilisateurDTOList
-                          | filter: searchText
-                          | paginate: { itemsPerPage: 8, currentPage: p }
-                      ">
-										<td>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 	<tr *ngFor="let product of products"> -->
+                  <tr
+                    *ngFor="
+                      let userDTO of utilisateurDTOList
+                        | filter: searchText
+                        | paginate: { itemsPerPage: 8, currentPage: p }
+                    "
+                  >
+                    <td>
                       <img
                         [src]="
                           this.crudApi.apiServerUrl +
@@ -61,7 +67,7 @@
                         width="70"
                         height="30"
                         *ngIf="img"
-                        />
+                      />
                       <img
                         class="avatar-img rounded-circle"
                         src="assets/admin/img/profiles/avatar-01.jpg"
@@ -72,155 +78,241 @@
                       />
                     </td>
 
-										<td>{{ userDTO.name }}</td>
+                    <td>{{ userDTO.name }}</td>
                     <td>{{ userDTO.username }}</td>
                     <td>{{ userDTO.address }}</td>
                     <td>{{ userDTO.mobile }}</td>
                     <td>{{ userDTO.email }}</td>
 
-
-										<td class="text-right">
-											<div class="actions">
-												<a class="btn btn-sm bg-success-light"
-                          data-toggle="modal" (click)="editModal(edittemplate,userDTO)">
+                    <td class="text-right">
+                      <div class="actions">
+                        <a
+                          class="btn btn-sm bg-success-light"
+                          data-toggle="modal"
+                          (click)="editModal(edittemplate, userDTO)"
+                        >
                           <i class="fe fe-pencil"></i> Edit
                         </a>
-												<a data-toggle="modal"
-                          (click)="deleteModal(delete,userDTO)"
-                          class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#deleteConfirmModal">
-													<i class="fe fe-trash"></i> Delete
-												</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+                        <a
+                          data-toggle="modal"
+                          (click)="deleteModal(delete, userDTO)"
+                          class="btn btn-sm bg-danger-light"
+                        >
+                          <i class="fe fe-trash"></i> Delete
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <div class="pagination">
                 <pagination-controls
                   (pageChange)="p = $event"
                 ></pagination-controls>
               </div>
-						</div>
-					</div>
-				</div>
-				<!-- /Recent Orders -->
-				</div>
-			</div>
-		</div>
+            </div>
+          </div>
+        </div>
+        <!-- /Recent Orders -->
+      </div>
+    </div>
+  </div>
 </div>
 <ng-template #addtemplate>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Add Product</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body text-center">
-        <form>
-            <div class="row form-row">
-                <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="file"  class="form-control">
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div style="margin-top:25px">
-            <button type="button" class="btn btn-success si_accept_confirm" id="btn-yes" (click)="save()" >Add Category</button>
-            <button type="button" class="btn btn-danger si_accept_cancel" (click)="decline()" >Cancel</button>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Product</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <form>
+      <div class="row form-row">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" />
           </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>Image</label>
+            <input type="file" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </form>
+    <div style="margin-top: 25px">
+      <button
+        type="button"
+        class="btn btn-success si_accept_confirm"
+        id="btn-yes"
+        (click)="save()"
+      >
+        Add Category
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger si_accept_cancel"
+        (click)="decline()"
+      >
+        Cancel
+      </button>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #edittemplate>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Edit Utilisateur</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-   <!--  <div class="modal-body text-center"> -->
-    <div class="modal-body">
-
-        <form [formGroup]="editForm" novalidate>
-          <div class="row form-row">
-              <div class="col-12 col-sm-4">
-                <div class="form-group">
-                  <label>USER ID</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="id"
-                    readonly
-                  />
-                </div>
-              </div>
-              <div class="col-12 col-sm-8">
-                <div class="form-group">
-                    <label>Nom Utilisateur</label>
-                    <input type="text" class="form-control" formControlName="username">
-                </div>
-              </div>
-                <div class="col-12 col-sm-12">
-                  <div class="form-group">
-                    <label>Nom&Prénom</label>
-                    <input type="text" class="form-control" formControlName="name">
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-12">
-                  <div class="form-group">
-                      <label>Address</label>
-                      <input type="text" class="form-control" formControlName="address">
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12">
-                  <div class="form-group">
-                      <label>Mobile</label>
-                      <input type="text" class="form-control" formControlName="mobile">
-                  </div>
-                </div>
-                <div class="col-12 col-sm-12">
-                  <div class="form-group">
-                      <label>Email</label>
-                      <input type="text" class="form-control" formControlName="email">
-                  </div>
-                </div>
-
-            </div>
-        </form>
-        <div style="margin-top:25px">
-            <button type="button" class="btn btn-success si_accept_confirm" id="btn-yes" (click)="update()" >Update</button>
-            <button type="button" class="btn btn-danger si_accept_cancel" (click)="decline()" >Cancel</button>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Utilisateur</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!--  <div class="modal-body text-center"> -->
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="row form-row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group">
+            <label>USER ID</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="id"
+              readonly
+            />
           </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="form-group">
+            <label>Nom Utilisateur</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Nom&Prénom</label>
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" class="form-control" formControlName="address" />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Mobile</label>
+            <input type="text" class="form-control" formControlName="mobile" />
+          </div>
+        </div>
+        <div class="col-12 col-sm-12">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" formControlName="email" />
+          </div>
+        </div>
+      </div>
+    </form>
+    <div style="margin-top: 25px">
+      <button
+        type="button"
+        class="btn btn-success si_accept_confirm"
+        id="btn-yes"
+        (click)="update()"
+      >
+        Update
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger si_accept_cancel"
+        (click)="decline()"
+      >
+        Cancel
+      </button>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #delete>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete</h4>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <p id="acc_msg">Etes vous sur de vouloir supprimer cet utilisateur?</p>
+    <div style="margin-top: 25px">
+     <!--  <button
+
+      type="button"
+      class="btn btn-default"
+      (mouseover)="btnColor()"
+      id="btn-yes"
+      (click)="deleteUtilisateurDTO()"
+
+        type="button"
+        class="btn btn-success si_accept_confirm"
+        id="btn-yes"
+        (click)="deleteUtilisateurDTO()"
+      > -->
+      <button
+        type="button"
+        class="btn btn-default"
+        (mouseover)="btnColor()"
+        id="btn-yes"
+        (click)="deleteUtilisateurDTO()"
+      >
+
+        Yes
+      </button>
+     <!--  <button
+        type="button"
+        class="btn btn-danger si_accept_cancel"
+        (click)="decline()"
+      > -->
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (mouseover)="btnColorNo()"
+        id="btn-no"
+        (click)="decline()"
+      >
+        No
+      </button>
     </div>
-    <div class="modal-body text-center">
-		<p id="acc_msg">Etes vous sur de vouloir supprimer cet utilisateur?</p>
-      <div style="margin-top:25px">
-        <button type="button" class="btn btn-success si_accept_confirm" id="btn-yes" (click)="deleteUtilisateurDTO()" >Yes</button>
-        <button type="button" class="btn btn-danger si_accept_cancel" (click)="decline()" >No</button>
-      </div>
-    </div>
+  </div>
 </ng-template>

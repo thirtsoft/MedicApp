@@ -168,4 +168,25 @@ export class ProductListComponent implements OnInit {
   decline() {
     this.modalRef.hide();
   }
+
+  btnColor() {
+    document.getElementById('btn-yes').style.backgroundColor = '#00d0f1';
+    document.getElementById('btn-yes').style.border = '1px solid #00d0f1';
+    document.getElementById('btn-yes').style.color = '#fff';
+
+    document.getElementById('btn-no').style.backgroundColor = '#fff';
+    document.getElementById('btn-no').style.border = '1px solid #fff';
+    document.getElementById('btn-no').style.color = '#000';
+  }
+
+  btnColorNo() {
+    document.getElementById('btn-no').style.backgroundColor = '#00d0f1';
+    document.getElementById('btn-no').style.border = '1px solid #00d0f1';
+    document.getElementById('btn-no').style.color = '#fff';
+
+    document.getElementById('btn-yes').style.backgroundColor = '#fff';
+    document.getElementById('btn-yes').style.border = '1px solid #fff';
+    document.getElementById('btn-yes').style.color = '#000';
+  }
+
 }
