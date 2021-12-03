@@ -178,7 +178,7 @@
 					<a (click)="change('Transactions')" [routerLink]="'/admin/transactions'"><i class="fe fe-activity"></i> <span>Graphiques</span></a>
 				</li>
         <li [class.active]="page === 'Specialities'">
-					<a  (click)="change('Specialities')" [routerLink]="'/admin/specialities'"><i class="fe fe-users"></i> <span>Services</span></a>
+					<a  (click)="change('Specialities')" [routerLink]="'/admin/specialities'"><i class="fe fe-vector"></i> <span>Services</span></a>
 				</li>
 				<li  [class.active]="page === 'Reviews'">
 					<a (click)="change('Reviews')" [routerLink]="'/admin/reviews'" ><i class="fa fa-envelope-open"></i> <span>Emails</span></a>
@@ -213,8 +213,13 @@
 					<a (click)="change('Pharmacy List')" [routerLink]="'pharmacy-list'"><i class="fe fe-vector"></i> <span>Pharmacy List</span></a>
 				</li> -->
 				<li [class.active]="page === 'profile'">
-					<a (click)="change('profile')" [routerLink]="'doc-profile'"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+					<a (click)="change('profile')" [routerLink]="'doc-profile'"><i class="fe fe-layout"></i> <span>Profile</span></a>
 				</li>
+
+        <li [class.active]="page === 'Product List'">
+					<a (click)="change('Product List')" [routerLink]="'product-list'"><i class="fe fe-user-plus"></i> <span>Uilisateurs</span></a>
+				</li>
+
 				<li class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
@@ -231,6 +236,7 @@
 						<li><a [routerLink]="'error-second'">500 Error </a></li>
 					</ul>
 				</li>
+
 		<!-- 		<li [class.active]="page === 'blank page'">
 					<a (click)="change('blank page')" [routerLink]="'blank-page'"><i class="fe fe-file"></i> <span>Blank Page</span></a>
 				</li>
