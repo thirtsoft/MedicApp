@@ -12,7 +12,9 @@ import { environment } from 'src/environments/environment';
 export class EmailService {
 
 //  public apiServerUrl = "http://localhost:8081/website/v1";
-  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
+
+
+  public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
 
   id;
   currentUser: any = {};
