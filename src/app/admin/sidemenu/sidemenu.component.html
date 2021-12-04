@@ -32,7 +32,7 @@
 	<ul class="nav user-menu">
 
 		<!-- Notifications -->
-		<li class="nav-item dropdown noti-dropdown">
+	<!-- 	<li class="nav-item dropdown noti-dropdown">
 			<a href="javascript:void(0)" class="dropdown-toggle nav-link" (click)="bell()"
 			[attr.aria-expanded]="!bellCollapsed" aria-controls="collapseExample1">
 				<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
@@ -102,7 +102,7 @@
 					<a href="javascript:void(0)" (click)="bellCollapsed = !bellCollapsed">View all Notifications</a>
 				</div>
 			</div>
-		</li>
+		</li> -->
 		<!-- /Notifications -->
 
 		<!-- User Menu -->
@@ -131,8 +131,8 @@
 						<p class="text-muted mb-0">{{ roles }}</p>
 					</div>
 				</div>
-				<a class="dropdown-item" (click)="getProfile()">My Profile</a>
-				<a class="dropdown-item" (click)="logout()">Logout</a>
+				<a class="dropdown-item" (click)="getProfile()" style="cursor: pointer;" >My Profile</a>
+				<a class="dropdown-item" (click)="logout()" style="cursor: pointer;" >Logout</a>
 
        <!--  <a class="dropdown-item" [routerLink]="'doc-profile'">My Profile</a>
 				<a class="dropdown-item" [routerLink]="'settings'">Settings</a>
@@ -212,30 +212,31 @@
 				<li [class.active]="page === 'Pharmacy List'">
 					<a (click)="change('Pharmacy List')" [routerLink]="'pharmacy-list'"><i class="fe fe-vector"></i> <span>Pharmacy List</span></a>
 				</li> -->
-				<li [class.active]="page === 'profile'">
-					<a (click)="change('profile')" [routerLink]="'doc-profile'"><i class="fe fe-layout"></i> <span>Profile</span></a>
-				</li>
 
         <li [class.active]="page === 'Product List'">
 					<a (click)="change('Product List')" [routerLink]="'product-list'"><i class="fe fe-user-plus"></i> <span>Uilisateurs</span></a>
 				</li>
 
+
 				<li class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
-						<li><a [routerLink]="'login-form'"> Login </a></li>
+					<!-- 	<li><a [routerLink]="'login-form'"> Login </a></li>
 						<li><a [routerLink]="'register'"> Register </a></li>
 						<li><a [routerLink]="'forgot-pass'"> Forgot Password </a></li>
 						<li><a [routerLink]="'lock-screen'"> Lock Screen </a></li>
+ -->
+						<li><a [routerLink]="'register'"> Register </a></li>
+						<li class="active"><a (click)="logout()" style="cursor: pointer;"> Déconnexion </a></li>
 					</ul>
 				</li>
-				<li class="submenu">
+			<!-- 	<li class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-warning"></i> <span> Error Pages </span><span class="menu-arrow"></span></a>
 					<ul style="display: none;">
 						<li><a [routerLink]="'error-first'">404 Error </a></li>
 						<li><a [routerLink]="'error-second'">500 Error </a></li>
 					</ul>
-				</li>
+				</li> -->
 
 		<!-- 		<li [class.active]="page === 'blank page'">
 					<a (click)="change('blank page')" [routerLink]="'blank-page'"><i class="fe fe-file"></i> <span>Blank Page</span></a>
