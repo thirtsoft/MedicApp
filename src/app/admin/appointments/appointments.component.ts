@@ -11,6 +11,10 @@ import { DemandeService } from './../../services/demande.service';
 
 import { UpdatePriceDemandeComponent } from './update-price-demande/update-price-demande.component';
 
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
@@ -131,19 +135,21 @@ export class AppointmentsComponent implements OnInit {
     this.modalRef.hide();
   }
 
- /*  onSubmit() {
-    console.log(this.crudApi.formData.value);
-    console.log(this.crudApi.formData.value.id);
-    console.log(this.crudApi.formData.value.price);
-    this.crudApi.updatePriceAndNumberOfDayOfDemandeDto(this.crudApi.formData.value.id,this.crudApi.formData.value.price, this.crudApi.formData.value.nbreJours).
-      subscribe( data => {
-      this.dialogRef.close();
-      this.toastr.success("Status et Nbre jours Modifier avec Succès");
-      this.getListDemandeDTO();
-      this.router.navigate(['/admin/appointment']);
-      });
+  OpenPdf() {
+    const document = this.getDocument();
+    pdfMake.createPdf(document).open();
   }
- */
+
+  PrintPdf() {
+    const document = this.getDocument();
+    pdfMake.createPdf(document).print();
+  }
+
+  DownloadPdf() {
+    const document = this.getDocument();
+    pdfMake.createPdf(document).download();
+  }
+
 
   deleteDemandeDTO() {
     this.listDemandeDtoData = this.listDemandeDtoData.filter((a) => a.id !== this.id);
@@ -152,6 +158,321 @@ export class AppointmentsComponent implements OnInit {
       this.getListDemandeDTOByStatusValidatedOrderByIdDesc();
     });
   }
+
+  getDocument() {
+    return {
+      content: [
+        {
+          text: 'SIM SENEGAL',
+          fontSize: 15,
+          alignment: 'center',
+          color: '#0000ff',
+          decoration: 'underline',
+          style: 'name',
+        },
+        {
+          text: 'Analyse de données statistiques, Vente de matériels médicales & informatiques, Accompagnement dans la rechercher de RV médicale et Mise en place de logiciel de gestion médicale',
+          fontSize: 11,
+          bold: true,
+          color: '#0000ff',
+          alignment: 'center',
+        },
+        {
+          text: 'Au Sicap Liberté 6 Lot N° 266 Dakar',
+          fontSize: 9.5,
+          bold: true,
+          color: '#0000ff',
+          alignment: 'center',
+        },
+        {
+          text: 'Tél: +221 77 446 66 25 / Email: senimedicale@gmail.com',
+          fontSize: 11,
+          bold: true,
+          alignment: 'center',
+          color: '#0000ff'
+        },
+        {
+
+        },
+
+
+        {
+          columns: [
+
+             [
+              {
+                text: `${this.crudApi.listData[0].status}`,
+                fontSize: 15,
+                bold: true,
+                color: '#0000ff',
+                margin: [0, 15, 0, 15]
+              },
+              {
+                text: ' Facturé à : ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                margin: [0, 7, 0, 7]
+              },
+              {
+                text: `${ this.crudApi.listData[0].firstName + ' ' + this.crudApi.listData[0].lastName }`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `Tél: ${this.crudApi.listData[0].mobile}`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `Email: ${this.crudApi.listData[0].email}`,
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+
+            ],
+
+            [
+              {
+                text: `Date : ${this.crudApi.listData[0].createdDate.toLocaleString()}`,
+                alignment: 'right',
+                margin: [0, 15, 0, 15]
+              },
+              {
+                text: ' Informations médicales : ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                alignment: 'right',
+                margin: [0, 7, 0, 7]
+              },
+              {
+                text: `${this.crudApi.listData[0].typeEtude}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `${this.crudApi.listData[0].speciality}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+              {
+                text: `${this.crudApi.listData[0].directorThese}`,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+                fontSize: 11,
+              },
+            ],
+
+
+          ]
+        },
+
+        {
+          text: ' FACTURE ',
+          alignment: 'center',
+          fontSize: 12,
+          color: '#0000ff',
+          bold: true,
+          margin: [0, 5, 0, 5]
+        },
+        {
+          text: `N° : ${this.crudApi.listData[0].numero}`,
+          bold: true,
+          fontSize: 12,
+          alignment: 'center',
+          color: '#0000ff',
+          margin: [0, 8, 0, 8]
+        },
+
+        {
+          columns: [
+
+             [
+
+              {
+                text: ' ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                margin: [0, 7, 0, 7]
+              },
+
+              {
+                text: `Saisi Donnée :  ${this.crudApi.listData[0].saisiDonnees}`,
+                bold: true,
+                fontSize: 11,
+                margin: [0, 8, 0, 8],
+              },
+
+              {
+                text: `Masque saisi :  ${this.crudApi.listData[0].masqueSaisi}`,
+                bold: true,
+                fontSize: 11,
+                margin: [0, 5, 0, 5],
+              },
+
+              {
+                text: `Nbre jours :  ${this.crudApi.listData[0].nbreJours}`,
+                bold: true,
+                fontSize: 11,
+                margin: [0, 5, 0, 5],
+              },
+
+            ],
+
+            [
+
+              {
+                text: ' ',
+                fontSize: 11,
+                color: '#0000ff',
+                bold: true,
+                margin: [0, 7, 0, 7]
+              },
+
+              {
+                text: `Analyse univ :  ${this.crudApi.listData[0].analyseUnvaried}`,
+                bold: true,
+                fontSize: 11,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+              },
+
+              {
+                text: `Analyse biv :  ${this.crudApi.listData[0].analyseBivarie}`,
+                bold: true,
+                fontSize: 11,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+              },
+
+              {
+                text: `Analyse multiv :  ${this.crudApi.listData[0].analyseMultivariate}`,
+                bold: true,
+                fontSize: 11,
+                alignment: 'right',
+                margin: [0, 5, 0, 5],
+              },
+
+
+
+            ],
+
+
+          ]
+        },
+
+
+
+
+        {
+
+        },
+
+  //      this.getListLigneCommandes(this.lcmdService.listData),
+        {
+
+        },
+
+        {
+          text: `Total F CFA : ${this.crudApi.listData[0].price}`,
+          alignment: 'right',
+          margin: [0, 8, 0, 8],
+          bold: true,
+          fontSize: 12,
+        },
+
+        {
+          text: 'Signature',
+          style: 'sign',
+          alignment: 'right',
+          decoration: 'underline',
+        },
+
+
+      ],
+
+      styles: {
+        header: {
+          fontSize: 14,
+          bold: true,
+          margin: [0, 20, 0, 10],
+          decoration: 'underline'
+        },
+        name: {
+          fontSize: 14,
+          bold: true
+        },
+        total: {
+          fontSize: 12,
+          bold: true,
+          italics: true
+        },
+        ligne: {
+          fontSize: 12,
+          bold: true,
+          italics: true
+        },
+        sign: {
+          margin: [0, 50, 0, 10],
+          alignment: 'right',
+          italics: true
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 14,
+          alignment: 'center'
+        },
+
+      }
+    };
+
+  }
+
+ /*  getListLigneCommandes(item: LigneCommandeDto[]) {
+    return {
+      table: {
+        widths: ['auto', '*', 'auto', 'auto'],
+        body: [
+          [
+            {
+              text: 'Quantité',
+              style: 'tableHeader'
+            },
+            {
+              text: 'Désignation',
+              style: 'tableHeader'
+            },
+            {
+              text: 'P.Unitaire',
+              style: 'tableHeader'
+            },
+            {
+              text: 'P.Total',
+              style: 'tableHeader'
+            },
+
+          ],
+          ...item.map(x => {
+            return ([x.quantity, x.productName, x.price,
+              (x.quantity*x.price).toFixed(2)])
+          }),
+          [
+            {
+              text: 'Montant Total',
+              alignment: 'center',
+              colSpan: 3
+            }, {}, {},
+            this.lcmdService.listData.reduce((sum, x)=> sum + (x.quantity * x.price), 0).toFixed(2)
+          ]
+        ]
+      }
+    }
+
+  } */
 
   decline() {
     this.modalRef.hide();
