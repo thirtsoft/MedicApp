@@ -1,3 +1,4 @@
+import { EmailService } from './../../services/email.service';
 import { Subject } from 'rxjs';
 import { Component, OnInit, Inject, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -38,6 +39,7 @@ export class DoctorsComponent implements OnInit {
   StatusList= ['ENCOURS','VALIDER','ANNULER'];
 
   constructor(public crudApi: DemandeService,
+              private mailService: EmailService,
               private modalService: BsModalService,
               public toastr: ToastrService,
               public router: Router,
@@ -175,17 +177,16 @@ export class DoctorsComponent implements OnInit {
   mailToDemandeur() {
     console.log(this.mailForm.value.id);
     console.log(this.mailForm.value);
-    /*
-    this.crudApi.updateStatusOfDemande(this.editForm.value.id, this.editForm.value.status)
+    this.mailService.sendEmailToCustomer(this.mailForm.value)
       .subscribe((data) => {
         this.modalRef.hide();
-        this.toastr.success('avec succès','Status Modifié', {
+        this.toastr.success('avec succès','Email envoyé au Client', {
           timeOut: 1500,
           positionClass: 'toast-top-right',
         });
        this.getListDemandeDTOByStatusPendingOrderByIdDesc();
        this.router.navigate(['/admin/doctor']);
-      }) */
+      }) 
     this.modalRef.hide();
   }
 

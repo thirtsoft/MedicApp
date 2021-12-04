@@ -13,9 +13,9 @@ export class DepartmentService {
 
  // private apiServerUrl = environment.apiBaseUrl;
 
- public apiServerUrl = "http://localhost:8081/website/v1";
+// public apiServerUrl = "http://localhost:8081/website/v1";
 
-// public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
+ public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
 
     id;
     currentUser: any = {};

@@ -11,7 +11,10 @@ import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http
 import { Login } from './login';
 import { UtilisateurDto } from './../../models/utilisateur';
 
-const AUTH_API = 'http://localhost:8081/website/v1/';
+//const AUTH_API = 'http://localhost:8081/website/v1/';
+
+const AUTH_API = 'https://medic-admin.herokuapp.com/website/v1/';
+
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -25,11 +28,18 @@ const httpOptions = {
 export class AuthService {
 
 
-  public loginUrl = 'http://localhost:8081/website/v1/auth/signIn';
+//  public loginUrl = 'http://localhost:8081/website/v1/auth/signIn';
 
-  public baseUrl_1 = 'http://localhost:8081/website/v1';
+  public loginUrl = 'https://medic-admin.herokuapp.com/website/v1/auth/signIn';
 
-  public apiServerUrl = 'http://localhost:8081/website/v1/auth/authenticated';
+
+//  public baseUrl_1 = 'http://localhost:8081/website/v1';
+
+  public baseUrl_1 = 'https://medic-admin.herokuapp.com/website/v1';
+
+//  public apiServerUrl = 'http://localhost:8081/website/v1/auth/authenticated';
+
+  public apiServerUrl = 'https://medic-admin.herokuapp.com/website/v1/auth/authenticated';
 
 
 

@@ -40,7 +40,7 @@
 
                 <h4>Location </h4>
 
-                <p>  <i class="fas fa-map-marker-alt"></i> : Hann-Mariste 2 - Dakar, Sénégal</p>
+                <p>  <i class="fas fa-map-marker-alt"></i> : Sicap Urbain - Dakar, Sénégal</p>
               </div>
 
               <div class="email">
@@ -50,7 +50,7 @@
 
               <div class="phone">
                 <h4>Téléphone </h4>
-                <p>  <i class="fas fa-phone"> </i> : +221 77 944 03 10</p>
+                <p>  <i class="fas fa-phone"> </i> : +221 77 446 66 25</p>
               </div>
 
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
@@ -59,30 +59,74 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+           <!--  <form action="forms/contact.php" method="post" role="form" class="php-email-form"> -->
+            <form [formGroup]="dataFormMail" (ngSubmit)="sendMailToManager()">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Votre nom</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
+                  <input
+                    type="text" class="form-control"
+                    id="customerName"
+                    name="customerName"
+                    formControlName="customerName" 
+                    required
+                  >
+                  <div *ngIf="f['customerName'].invalid && (f['customerName'].dirty || f['customerName'].touched)" class="alert alert-danger">
+                    <span *ngIf="f['customerName'].errors.required">
+                      Veuillez donner votre nom.
+                   </span>
+                  </div>
                 </div>
                 <div class="form-group col-md-6 mt-3 mt-md-0">
                   <label for="name">Votre Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
+                  <input
+                    type="email" class="form-control"
+                    name="customerEmail" id="customerEmail"
+                    formControlName="customerEmail"
+                    required
+                  >
+                  <div *ngIf="f['customerEmail'].invalid && (f['customerEmail'].dirty || f['customerEmail'].touched)" class="alert alert-danger">
+                    <span *ngIf="f['customerEmail'].errors.required">
+                      Veuillez donner votre email.
+                   </span>
+                  </div>
                 </div>
               </div>
               <div class="form-group mt-3">
                 <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
+                <input
+                  type="text" class="form-control"
+                  name="subject" id="subject"
+                  formControlName="subject"
+                  required
+                >
+                <div *ngIf="f['subject'].invalid && (f['subject'].dirty || f['subject'].touched)" class="alert alert-danger">
+                  <span *ngIf="f['subject'].errors.required">
+                    Veuillez indiquez l'object.
+                 </span>
+                </div>
               </div>
               <div class="form-group mt-3">
                 <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+                <textarea 
+                  class="form-control" 
+                  name="message" rows="10"
+                  formControlName="message" 
+                  required
+                >
+                <div *ngIf="f['message'].invalid && (f['message'].dirty || f['message'].touched)" class="alert alert-danger">
+                  <span *ngIf="f['message'].errors.required">
+                    Poser votre question.
+                 </span>
+                </div>
+                </textarea>
               </div>
-             <!--  <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Votre message est envoyée. Merci de nous avoir contacté!</div>
-              </div> -->
+              <div class="my-3">
+                <!-- <div class="loading">Loading</div>
+                <div class="error-message" *ngIf="!isSent">Désolé votre email n'a pas été envoyé, 
+                  veuillez vérifier si vous avez rempli les champs </div> -->
+                <div class="sent-message" *ngIf="isSent">Votre message est envoyée. Merci de nous avoir contacté!</div>
+              </div> 
               <div class="text-center"><button class="btn btn-primary btn-block" type="submit">Envoyer Message</button></div>
             </form>
           </div>

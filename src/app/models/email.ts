@@ -4,13 +4,16 @@ export class Email {
 
 export class EmailDto {
   id: number;
-  receiver: string;
+  customerName: string;
+  customerEmail: string;
+  recipient: string;
   subject: string;
   message: string;
 
   createDate: Date;
 
-//  demandeDto: DemandeDto;
+  demandeDto: DemandeDto;
+
 
 }
 

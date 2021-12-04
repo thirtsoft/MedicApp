@@ -19,7 +19,7 @@ export class PatientsComponent implements OnInit {
     private router: Router,
     public commonService: CommonServiceService
   ) {
-   
+
     if (
       router.url === '/patients/dashboard' ||
       router.url === '/patients/favourites' ||
@@ -66,7 +66,7 @@ export class PatientsComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (
           event.url === '/patients/patient-chat'
-          
+
         ) {
           this.breadcrum = false
         } else {
@@ -76,14 +76,14 @@ export class PatientsComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (
           event.url === '/patients/search-doctor'
-          
+
         ) {
           this.showSelect = true
         } else {
           this.showSelect = false
         }
       }
-    });    
+    });
   }
 
   ngOnInit(): void {

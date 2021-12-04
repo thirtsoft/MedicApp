@@ -8,9 +8,9 @@ import { Injectable } from '@angular/core';
 })
 export class DashboardService {
 
-  public apiServerUrl = "http://localhost:8081/website/v1";
+//  public apiServerUrl = "http://localhost:8081/website/v1";
 
-//  public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
+  public apiServerUrl = "https://medic-admin.herokuapp.com/website/v1";
 
   //  public apiServerUrl = "https://server-chauffeur.herokuapp.com/sen-chauffeurs/v1";
 
