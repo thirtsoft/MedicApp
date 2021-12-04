@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from './../auth/token-storage.service';
 import { AuthService } from './../auth/auth.service';
@@ -43,12 +46,18 @@ export class DocProfileComponent implements OnInit {
 
   userId;
   img: boolean;
+  editForm: FormGroup;
+  modalRef: BsModalRef;
+  errorMessage: string;
 
   constructor(private router: Router,
               private authService: AuthService,
               private tokenService: TokenStorageService,
               public toastr: ToastrService,
-              public userService: UtilisateurService) {
+              public crudApi: UtilisateurService,
+              private modalService: BsModalService,
+              private fb: FormBuilder,
+  ) {
 
   }
 
@@ -64,7 +73,7 @@ export class DocProfileComponent implements OnInit {
     this.password = user.password;
     this.name = user.name;
 
-    if (this.userService.getUserAvatar(this.userId) === null)
+    if (this.crudApi.getUserAvatar(this.userId) === null)
       this.img = false;
     else this.img =true;
 
@@ -74,16 +83,41 @@ export class DocProfileComponent implements OnInit {
       newPassword: '',
     };
 
+    this.editForm = this.fb.group({
+      id: [''],
+      name: [''],
+      username: [''],
+      address: [''],
+      mobile: [''],
+      email: ['']
+    } );
+
   }
 
   getEmploye() {
     const user = this.tokenService.getUser();
     console.log(user.id);
-    this.userService.getUtilisateurDtoById(user.id).subscribe(
+    this.crudApi.getUtilisateurDtoById(user.id).subscribe(
     response => {
     console.log(response);
     this.listDataProfil = response;
     }
+    );
+  }
+
+  editModal(template: TemplateRef<any>, userDTO: UtilisateurDto) {
+    this.modalRef = this.modalService.show(template, {
+      class: 'modal-sm modal-dialog-centered',
+    });
+
+    this.editForm.patchValue( {
+      id: userDTO.id,
+      name: userDTO.name,
+      username: userDTO.username,
+      address: userDTO.address,
+      mobile: userDTO.mobile,
+      email: userDTO.email
+      }
     );
   }
 
@@ -105,7 +139,7 @@ export class DocProfileComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     console.log(this.currentFileUpload);
     console.log(this.id);
-    this.userService.uploadPhotoUtilisateur(this.currentFileUpload, this.id)
+    this.crudApi.uploadPhotoUtilisateur(this.currentFileUpload, this.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -133,25 +167,19 @@ export class DocProfileComponent implements OnInit {
 
   }
 
- /*  addEditUsername(item: UtilisateurDto) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width = "50%";
-    this.authService.listData = Object.assign({}, item)
-    this.matDialog.open(UpdateUsernameComponent, dialogConfig);
+  update() {
+    this.crudApi.updateUtilisateurDto(this.listDataProfil.id, this.listDataProfil)
+      .subscribe((data) => {
+        this.toastr.warning('avec succès','Votre profil a été modifié !', {
+          timeOut: 1500,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigateByUrl("admin/dashborad").then(() => {
+          window.location.reload();
+        });
+      })
+    this.modalRef.hide();
   }
-
-  addEditPassword(item: UtilisateurDto) {
-    console.log(item);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width = "50%";
-    this.authService.listData = Object.assign({}, item)
-    this.matDialog.open(UpdatePasswordComponent, dialogConfig);
-
-  } */
 
   logout(): void {
     this.tokenService.signOut();
@@ -162,24 +190,13 @@ export class DocProfileComponent implements OnInit {
     this.router.navigateByUrl('admin/dashborad');
   }
 
- /*  editProfil(item: UtilisateurDto) {
-    console.log(item);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.disableClose = true;
-    dialogConfig.width = "50%";
-    this.authService.listData = Object.assign({}, item)
-    this.matDialog.open(UpdateProfilComponent, dialogConfig);
-
-  } */
-
-
   about() {
     this.changePass = false;
     this.personalDetails = true;
     document.getElementById('about').classList.add('active');
     document.getElementById('pass').classList.remove('active');
   }
+
   pass() {
     this.changePass = true;
     this.personalDetails = false;
@@ -190,4 +207,29 @@ export class DocProfileComponent implements OnInit {
   submit() {
     this.router.navigateByUrl('/admin/doc-profile');
   }
+
+  decline() {
+    this.modalRef.hide();
+  }
+
+  btnColor() {
+    document.getElementById('btn-yes').style.backgroundColor = '#00d0f1';
+    document.getElementById('btn-yes').style.border = '1px solid #00d0f1';
+    document.getElementById('btn-yes').style.color = '#fff';
+
+    document.getElementById('btn-no').style.backgroundColor = '#fff';
+    document.getElementById('btn-no').style.border = '1px solid #fff';
+    document.getElementById('btn-no').style.color = '#000';
+  }
+
+  btnColorNo() {
+    document.getElementById('btn-no').style.backgroundColor = '#00d0f1';
+    document.getElementById('btn-no').style.border = '1px solid #00d0f1';
+    document.getElementById('btn-no').style.color = '#fff';
+
+    document.getElementById('btn-yes').style.backgroundColor = '#fff';
+    document.getElementById('btn-yes').style.border = '1px solid #fff';
+    document.getElementById('btn-yes').style.color = '#000';
+  }
+
 }
